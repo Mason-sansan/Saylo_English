@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Server-auth SQLite + session files (voice-server)
-voice-server/data/
+# Server-auth SQLite + session files (voice-server); keep bundled scene JSON.
+voice-server/data/*
+!voice-server/data/conversation-scenes.json

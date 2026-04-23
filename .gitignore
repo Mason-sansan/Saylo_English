@@ -6,4 +6,6 @@
 web/node_modules/
 web/dist/
 web/voice-server/node_modules/
-web/voice-server/data/
+# Runtime user DB/sessions stay local; ship scene library JSON for Conversation.
+web/voice-server/data/*
+!web/voice-server/data/conversation-scenes.json

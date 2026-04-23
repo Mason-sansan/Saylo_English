@@ -1,0 +1,2110 @@
+{
+  "schemaVersion": 2,
+  "description": "35 scenarios per CEFR level: 18 work + 17 life. Each firstLine: brief scene + \"I'll start as the …; you reply as the ….\" — then the in-character opening. Server picks randomly by level.",
+  "scenarios": [
+    {
+      "id": "a1-w-01",
+      "level": "A1",
+      "domain": "work",
+      "title": "Office — sign in",
+      "setting": "You visit an office. You must sign in at the desk.",
+      "coachRole": "Receptionist",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Office — sign in. You visit an office. You must sign in at the desk. I'll start as the receptionist; you reply as the visitor. — Hello. What is your name? And who are you here to see today?",
+      "learnerGoals": [
+        "Say your name.",
+        "Say one person or team name."
+      ]
+    },
+    {
+      "id": "a2-w-01",
+      "level": "A2",
+      "domain": "work",
+      "title": "Front desk check-in",
+      "setting": "You arrive for a meeting and the reception desk needs basic details before they print a badge.",
+      "coachRole": "Receptionist",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Front desk check-in. You arrive for a meeting and the reception desk needs basic details before they print a badge. I'll start as the receptionist; you reply as the visitor. — Hi there — can I get your full name, the company you are with, and who you are meeting?"
+    },
+    {
+      "id": "b1-w-01",
+      "level": "B1",
+      "domain": "work",
+      "title": "Visitor registration",
+      "setting": "You are checking in at a company lobby; security rules require a host name and ID.",
+      "coachRole": "Receptionist",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Visitor registration. You are checking in at a company lobby; security rules require a host name and ID. I'll start as the receptionist; you reply as the visitor. — Welcome. I need your ID for the visitor log, the name of your host, and whether you have a laptop to register — what should I put down?"
+    },
+    {
+      "id": "b2-w-01",
+      "level": "B2",
+      "domain": "work",
+      "title": "Lobby registration under tightened policy",
+      "setting": "New lobby rules require purpose of visit and equipment; you want a smooth check-in without delays.",
+      "coachRole": "Receptionist",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Lobby registration under tightened policy. New lobby rules require purpose of visit and equipment; you want a smooth check-in without delays. I'll start as the receptionist; you reply as the visitor. — We have to capture visit purpose and any devices on the badge request — walk me through who invited you, what you are delivering or discussing, and what you are carrying in."
+    },
+    {
+      "id": "c1-w-01",
+      "level": "C1",
+      "domain": "work",
+      "title": "High-security visitor intake",
+      "setting": "You are visiting a site with split compliance rules; the receptionist must reconcile access and confidentiality.",
+      "coachRole": "Receptionist",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: High-security visitor intake. You are visiting a site with split compliance rules; the receptionist must reconcile access and confidentiality. I'll start as the receptionist; you reply as the visitor. — Before I issue access, I need to align three things: who sponsored you, whether your discussion touches confidential data, and what level of floor access your host pre-approved — how do you want to frame that?"
+    },
+    {
+      "id": "c2-w-01",
+      "level": "C2",
+      "domain": "work",
+      "title": "Executive site visit — access boundaries",
+      "setting": "A sensitive briefing overlaps with a wider team floor; you must negotiate what access is defensible.",
+      "coachRole": "Receptionist",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Executive site visit — access boundaries. A sensitive briefing overlaps with a wider team floor; you must negotiate what access is defensible. I'll start as the receptionist; you reply as the visitor. — We are tight on scope today: I can either route you to the executive briefing room under escort, or widen badge access with legal sign-off — which risk trade-off does your host want to own, and what are you explicitly not cleared to hear?"
+    },
+    {
+      "id": "a1-w-02",
+      "level": "A1",
+      "domain": "work",
+      "title": "Shop — shift change",
+      "setting": "Your work shift is ending. Your supervisor asks a short question.",
+      "coachRole": "Shift supervisor",
+      "learnerRole": "Sales assistant",
+      "firstLine": "Scene: Shop — shift change. Your work shift is ending. Your supervisor asks a short question. I'll start as the shift supervisor; you reply as the sales assistant. — Hi — quick handover. What is low in stock, and did any customer complain today?"
+    },
+    {
+      "id": "a2-w-02",
+      "level": "A2",
+      "domain": "work",
+      "title": "Retail handover",
+      "setting": "You finish a shift at a small shop and must pass notes to the next staff.",
+      "coachRole": "Shift supervisor",
+      "learnerRole": "Sales assistant",
+      "firstLine": "Scene: Retail handover. You finish a shift at a small shop and must pass notes to the next staff. I'll start as the shift supervisor; you reply as the sales assistant. — Before you clock out — what ran low on the floor, any returns I should know about, and anything odd with the card reader?"
+    },
+    {
+      "id": "b1-w-02",
+      "level": "B1",
+      "domain": "work",
+      "title": "End-of-shift retail notes",
+      "setting": "You hand over to the closing supervisor; they need inventory and customer issues.",
+      "coachRole": "Shift supervisor",
+      "learnerRole": "Sales assistant",
+      "firstLine": "Scene: End-of-shift retail notes. You hand over to the closing supervisor; they need inventory and customer issues. I'll start as the shift supervisor; you reply as the sales assistant. — I need a tight handover: top three SKUs that moved, any unhappy customers and how you handled it, and whether cash matches the drawer — what is your summary?"
+    },
+    {
+      "id": "b2-w-02",
+      "level": "B2",
+      "domain": "work",
+      "title": "Shift turnover with shrink risk",
+      "setting": "Inventory discrepancies rose last week; handover must flag patterns without blame.",
+      "coachRole": "Shift supervisor",
+      "learnerRole": "Sales assistant",
+      "firstLine": "Scene: Shift turnover with shrink risk. Inventory discrepancies rose last week; handover must flag patterns without blame. I'll start as the shift supervisor; you reply as the sales assistant. — Give me the operational picture: what sold through, what felt off in counts or voids, and what you want the next shift to double-check before close."
+    },
+    {
+      "id": "c1-w-02",
+      "level": "C1",
+      "domain": "work",
+      "title": "Handover under audit pressure",
+      "setting": "Auditors asked for traceable notes; you must balance speed and accountability.",
+      "coachRole": "Shift supervisor",
+      "learnerRole": "Sales assistant",
+      "firstLine": "Scene: Handover under audit pressure. Auditors asked for traceable notes; you must balance speed and accountability. I'll start as the shift supervisor; you reply as the sales assistant. — I need a defensible handover — what changed materially since open, what evidence supports it, and what you are uncertain about that I should escalate rather than assume?"
+    },
+    {
+      "id": "c2-w-02",
+      "level": "C2",
+      "domain": "work",
+      "title": "Crisis week retail continuity",
+      "setting": "Supply noise and staff shortages overlap; the handover must set strategic priorities.",
+      "coachRole": "Shift supervisor",
+      "learnerRole": "Sales assistant",
+      "firstLine": "Scene: Crisis week retail continuity. Supply noise and staff shortages overlap; the handover must set strategic priorities. I'll start as the shift supervisor; you reply as the sales assistant. — Frame this not as tasks but risk: what threatens revenue or compliance tonight, what you mitigated, and what decision you need from me in the next ten minutes — with one hard number if possible."
+    },
+    {
+      "id": "a1-w-03",
+      "level": "A1",
+      "domain": "work",
+      "title": "Quick work question",
+      "setting": "Your boss asks what you did today at work.",
+      "coachRole": "Team lead",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Quick work question. Your boss asks what you did today at work. I'll start as the team lead; you reply as the team member. — Hi. What did you finish today? And what is your problem — one thing only?"
+    },
+    {
+      "id": "a2-w-03",
+      "level": "A2",
+      "domain": "work",
+      "title": "Short stand-up",
+      "setting": "Your team has a quick daily meeting; you give a short update.",
+      "coachRole": "Team lead",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Short stand-up. Your team has a quick daily meeting; you give a short update. I'll start as the team lead; you reply as the team member. — Quick round — what did you complete since yesterday, and what is blocking you right now?"
+    },
+    {
+      "id": "b1-w-03",
+      "level": "B1",
+      "domain": "work",
+      "title": "Daily standup update",
+      "setting": "You report progress and one blocker in a time-boxed standup.",
+      "coachRole": "Team lead",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Daily standup update. You report progress and one blocker in a time-boxed standup. I'll start as the team lead; you reply as the team member. — We only have a minute each — what shipped, what is stuck, and what help do you need from the room?"
+    },
+    {
+      "id": "b2-w-03",
+      "level": "B2",
+      "domain": "work",
+      "title": "Standup with cross-team dependency",
+      "setting": "Your update must surface a dependency without derailing the whole meeting.",
+      "coachRole": "Team lead",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Standup with cross-team dependency. Your update must surface a dependency without derailing the whole meeting. I'll start as the team lead; you reply as the team member. — Give your update in three beats: outcome, confidence level, and the one dependency that could slip the date if we ignore it — what are they?"
+    },
+    {
+      "id": "c1-w-03",
+      "level": "C1",
+      "domain": "work",
+      "title": "Standup under delivery pressure",
+      "setting": "Leadership is listening for honesty versus optimism; you calibrate the message.",
+      "coachRole": "Team lead",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Standup under delivery pressure. Leadership is listening for honesty versus optimism; you calibrate the message. I'll start as the team lead; you reply as the team member. — I want signal, not morale — what is objectively done, what is fragile, and what would you stop doing this week to protect the commitment we already made?"
+    },
+    {
+      "id": "c2-w-03",
+      "level": "C2",
+      "domain": "work",
+      "title": "Executive stand-in standup",
+      "setting": "You represent a team in front of a skeptical director.",
+      "coachRole": "Team lead",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Executive stand-in standup. You represent a team in front of a skeptical director. I'll start as the team lead; you reply as the team member. — In one minute: defend the current milestone, name the single assumption that could invalidate our plan, and tell me what authority you need unlocked — no filler."
+    },
+    {
+      "id": "a1-w-04",
+      "level": "A1",
+      "domain": "work",
+      "title": "Email problem",
+      "setting": "A coworker thinks you did not answer an email.",
+      "coachRole": "Coworker",
+      "learnerRole": "Project teammate",
+      "firstLine": "Scene: Email problem. A coworker thinks you did not answer an email. I'll start as the coworker; you reply as the project teammate. — Hi. I sent you an email yesterday. Did you see it? Can you answer today?"
+    },
+    {
+      "id": "a2-w-04",
+      "level": "A2",
+      "domain": "work",
+      "title": "Missed email follow-up",
+      "setting": "A colleague needs a reply you may have missed.",
+      "coachRole": "Coworker",
+      "learnerRole": "Project teammate",
+      "firstLine": "Scene: Missed email follow-up. A colleague needs a reply you may have missed. I'll start as the coworker; you reply as the project teammate. — Hey — I emailed yesterday about the shared doc. Did it reach you, and when can you take a look?"
+    },
+    {
+      "id": "b1-w-04",
+      "level": "B1",
+      "domain": "work",
+      "title": "Chasing a project email",
+      "setting": "A deadline depends on your input; your coworker checks in politely but firmly.",
+      "coachRole": "Coworker",
+      "learnerRole": "Project teammate",
+      "firstLine": "Scene: Chasing a project email. A deadline depends on your input; your coworker checks in politely but firmly. I'll start as the coworker; you reply as the project teammate. — I need your sign-off on the draft by tomorrow — can you confirm you saw my thread, and if not, what is the fastest way to get your eyes on it today?"
+    },
+    {
+      "id": "b2-w-04",
+      "level": "B2",
+      "domain": "work",
+      "title": "Thread drift and ownership",
+      "setting": "Multiple emails crossed; you clarify ownership without damaging the relationship.",
+      "coachRole": "Coworker",
+      "learnerRole": "Project teammate",
+      "firstLine": "Scene: Thread drift and ownership. Multiple emails crossed; you clarify ownership without damaging the relationship. I'll start as the coworker; you reply as the project teammate. — We have parallel threads and conflicting versions — can you tell me which file you treat as source of truth, and whether you want me to consolidate or you will?"
+    },
+    {
+      "id": "c1-w-04",
+      "level": "C1",
+      "domain": "work",
+      "title": "Escalation risk on communication gap",
+      "setting": "Stakeholders inferred silence as delay; you repair process and substance.",
+      "coachRole": "Coworker",
+      "learnerRole": "Project teammate",
+      "firstLine": "Scene: Escalation risk on communication gap. Stakeholders inferred silence as delay; you repair process and substance. I'll start as the coworker; you reply as the project teammate. — Silence got interpreted as a slip — walk me through what you actually blocked on, what you need from me to unblock, and how we prevent the next miss without more process theater."
+    },
+    {
+      "id": "c2-w-04",
+      "level": "C2",
+      "domain": "work",
+      "title": "Political cost of inbox debt",
+      "setting": "A partner team is building a narrative; you reset norms at senior peer level.",
+      "coachRole": "Coworker",
+      "learnerRole": "Project teammate",
+      "firstLine": "Scene: Political cost of inbox debt. A partner team is building a narrative; you reset norms at senior peer level. I'll start as the coworker; you reply as the project teammate. — I am going to be direct: your non-response became ammunition in a prioritization fight — what is the accurate story, what trade-off you were protecting, and what explicit SLA do you want going forward?"
+    },
+    {
+      "id": "a1-w-05",
+      "level": "A1",
+      "domain": "work",
+      "title": "Client phone — order",
+      "setting": "A client calls about an order. You answer.",
+      "coachRole": "Client services",
+      "learnerRole": "Account manager",
+      "firstLine": "Scene: Client phone — order. A client calls about an order. You answer. I'll start as the client services; you reply as the account manager. — Hello, this is support. What is your order number? What is the problem?"
+    },
+    {
+      "id": "a2-w-05",
+      "level": "A2",
+      "domain": "work",
+      "title": "Customer order call",
+      "setting": "A customer calls about a wrong shipment; you gather facts.",
+      "coachRole": "Client services",
+      "learnerRole": "Account manager",
+      "firstLine": "Scene: Customer order call. A customer calls about a wrong shipment; you gather facts. I'll start as the client services; you reply as the account manager. — Thanks for calling — can you give me the order ID, what you expected, and what arrived instead?"
+    },
+    {
+      "id": "b1-w-05",
+      "level": "B1",
+      "domain": "work",
+      "title": "Shipment mismatch triage",
+      "setting": "You represent the vendor; the client is annoyed but reasonable.",
+      "coachRole": "Client services",
+      "learnerRole": "Account manager",
+      "firstLine": "Scene: Shipment mismatch triage. You represent the vendor; the client is annoyed but reasonable. I'll start as the client services; you reply as the account manager. — I want to fix this quickly — confirm the PO, the SKU you expected versus what the packing slip shows, and whether you can send a photo so we can authorize a replacement."
+    },
+    {
+      "id": "b2-w-05",
+      "level": "B2",
+      "domain": "work",
+      "title": "Commercial relationship under error",
+      "setting": "The error touches a renewal; you balance remedy and contract language.",
+      "coachRole": "Client services",
+      "learnerRole": "Account manager",
+      "firstLine": "Scene: Commercial relationship under error. The error touches a renewal; you balance remedy and contract language. I'll start as the client services; you reply as the account manager. — Walk me through timeline impact, what the client already told their boss, and whether we are discussing a credit, a redo, or a process fix — I need one recommendation."
+    },
+    {
+      "id": "c1-w-05",
+      "level": "C1",
+      "domain": "work",
+      "title": "Key account recovery call",
+      "setting": "Trust is dented; you probe root cause and signal seriousness.",
+      "coachRole": "Client services",
+      "learnerRole": "Account manager",
+      "firstLine": "Scene: Key account recovery call. Trust is dented; you probe root cause and signal seriousness. I'll start as the client services; you reply as the account manager. — Before we talk solution, I want the narrative straight: what broke in our chain, what you already promised internally, and what would count as a credible repair beyond a one-off exception?"
+    },
+    {
+      "id": "c2-w-05",
+      "level": "C2",
+      "domain": "work",
+      "title": "Contractual exposure on repeated failures",
+      "setting": "Legal and ops are in the loop; you negotiate a bounded settlement.",
+      "coachRole": "Client services",
+      "learnerRole": "Account manager",
+      "firstLine": "Scene: Contractual exposure on repeated failures. Legal and ops are in the loop; you negotiate a bounded settlement. I'll start as the client services; you reply as the account manager. — We are past goodwill gestures — map the failure mode, quantify business impact conservatively, and tell me what remedy stays inside our standard terms versus what needs an amendment."
+    },
+    {
+      "id": "a1-w-06",
+      "level": "A1",
+      "domain": "work",
+      "title": "Computer password",
+      "setting": "You cannot log in. IT helps you.",
+      "coachRole": "IT help desk",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Computer password. You cannot log in. IT helps you. I'll start as the iT help desk; you reply as the employee. — Hi, IT here. What is your work email? Can you tell me the error message on the screen?"
+    },
+    {
+      "id": "a2-w-06",
+      "level": "A2",
+      "domain": "work",
+      "title": "Password reset request",
+      "setting": "You locked your account; IT verifies identity and resets access.",
+      "coachRole": "IT help desk",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Password reset request. You locked your account; IT verifies identity and resets access. I'll start as the iT help desk; you reply as the employee. — I can help — what is your employee ID or email, and are you on a work laptop or personal device right now?"
+    },
+    {
+      "id": "b1-w-06",
+      "level": "B1",
+      "domain": "work",
+      "title": "Access lockout triage",
+      "setting": "You need tools for a deadline; IT follows security steps.",
+      "coachRole": "IT help desk",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Access lockout triage. You need tools for a deadline; IT follows security steps. I'll start as the iT help desk; you reply as the employee. — Let us get you back in — confirm your username, whether MFA is prompting, and if you recently changed devices so we pick the right reset path."
+    },
+    {
+      "id": "b2-w-06",
+      "level": "B2",
+      "domain": "work",
+      "title": "Security exception under deadline",
+      "setting": "Policy blocks a fast reset; you negotiate a compliant workaround.",
+      "coachRole": "IT help desk",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Security exception under deadline. Policy blocks a fast reset; you negotiate a compliant workaround. I'll start as the iT help desk; you reply as the employee. — Standard reset will cost you hours — tell me the business deadline, what systems you must reach, and whether your manager can approve a temporary elevated path."
+    },
+    {
+      "id": "c1-w-06",
+      "level": "C1",
+      "domain": "work",
+      "title": "Insider risk vs productivity",
+      "setting": "Unusual login patterns triggered controls; you explain trade-offs.",
+      "coachRole": "IT help desk",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Insider risk vs productivity. Unusual login patterns triggered controls; you explain trade-offs. I'll start as the iT help desk; you reply as the employee. — We flagged activity that looks like credential sharing — help me understand legitimate context, what access you actually need, and what audit trail we can leave that satisfies security without blocking delivery."
+    },
+    {
+      "id": "c2-w-06",
+      "level": "C2",
+      "domain": "work",
+      "title": "Post-breach tightening",
+      "setting": "Org-wide controls landed mid-project; you align exception governance.",
+      "coachRole": "IT help desk",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Post-breach tightening. Org-wide controls landed mid-project; you align exception governance. I'll start as the iT help desk; you reply as the employee. — We are not debating convenience — which workflows are safety-critical, which assumptions in your project require exceptions, and who will sign the residual risk if we grant them?"
+    },
+    {
+      "id": "a1-w-07",
+      "level": "A1",
+      "domain": "work",
+      "title": "Interview time",
+      "setting": "You plan an interview with a recruiter.",
+      "coachRole": "Recruiter",
+      "learnerRole": "Hiring manager",
+      "firstLine": "Scene: Interview time. You plan an interview with a recruiter. I'll start as the recruiter; you reply as the hiring manager. — Hi. When can you interview the candidate? Morning or afternoon?"
+    },
+    {
+      "id": "a2-w-07",
+      "level": "A2",
+      "domain": "work",
+      "title": "Scheduling a candidate",
+      "setting": "You coordinate a simple interview slot with recruiting.",
+      "coachRole": "Recruiter",
+      "learnerRole": "Hiring manager",
+      "firstLine": "Scene: Scheduling a candidate. You coordinate a simple interview slot with recruiting. I'll start as the recruiter; you reply as the hiring manager. — We have a strong candidate — what days work for your panel, and do you prefer video or on-site?"
+    },
+    {
+      "id": "b1-w-07",
+      "level": "B1",
+      "domain": "work",
+      "title": "Panel interview logistics",
+      "setting": "Multiple calendars conflict; you lock a workable slot.",
+      "coachRole": "Recruiter",
+      "learnerRole": "Hiring manager",
+      "firstLine": "Scene: Panel interview logistics. Multiple calendars conflict; you lock a workable slot. I'll start as the recruiter; you reply as the hiring manager. — I need a 90-minute panel next week — who must be in the room, what flexibility do you have on day, and should we record a debrief right after?"
+    },
+    {
+      "id": "b2-w-07",
+      "level": "B2",
+      "domain": "work",
+      "title": "Competing priorities on hiring",
+      "setting": "Delivery pressure fights interview time; you negotiate a fair slot.",
+      "coachRole": "Recruiter",
+      "learnerRole": "Hiring manager",
+      "firstLine": "Scene: Competing priorities on hiring. Delivery pressure fights interview time; you negotiate a fair slot. I'll start as the recruiter; you reply as the hiring manager. — Your team is underwater — tell me the minimum viable panel, the latest acceptable date without losing the candidate, and what you want assessed versus deferred to a second round."
+    },
+    {
+      "id": "c1-w-07",
+      "level": "C1",
+      "domain": "work",
+      "title": "Calibration before final round",
+      "setting": "Bias and bar drift are concerns; you align evaluation criteria.",
+      "coachRole": "Recruiter",
+      "learnerRole": "Hiring manager",
+      "firstLine": "Scene: Calibration before final round. Bias and bar drift are concerns; you align evaluation criteria. I'll start as the recruiter; you reply as the hiring manager. — Before we schedule, I want the rubric explicit — what differentiates hire from no-hire for you, what evidence you need in-round, and how we document decisions if the panel splits?"
+    },
+    {
+      "id": "c2-w-07",
+      "level": "C2",
+      "domain": "work",
+      "title": "Executive search timing conflict",
+      "setting": "Board timeline compresses hiring; you manage optics and process.",
+      "coachRole": "Recruiter",
+      "learnerRole": "Hiring manager",
+      "firstLine": "Scene: Executive search timing conflict. Board timeline compresses hiring; you manage optics and process. I'll start as the recruiter; you reply as the hiring manager. — We are being pushed to shortcut diligence — what are we willing to stake on a fast decision, what must not be skipped without reputational risk, and who owns the narrative if this hire misfires?"
+    },
+    {
+      "id": "a1-w-08",
+      "level": "A1",
+      "domain": "work",
+      "title": "Expense question",
+      "setting": "Finance asks about your expense report.",
+      "coachRole": "Finance analyst",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Expense question. Finance asks about your expense report. I'll start as the finance analyst; you reply as the employee. — Hello. One line on your report is not clear. What is this $40 for?"
+    },
+    {
+      "id": "a2-w-08",
+      "level": "A2",
+      "domain": "work",
+      "title": "Expense line item check",
+      "setting": "A receipt is missing or unclear; finance emails you.",
+      "coachRole": "Finance analyst",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Expense line item check. A receipt is missing or unclear; finance emails you. I'll start as the finance analyst; you reply as the employee. — Can you clarify the dinner charge on May 3 — who attended and was it client-facing?"
+    },
+    {
+      "id": "b1-w-08",
+      "level": "B1",
+      "domain": "work",
+      "title": "Expense policy clarification",
+      "setting": "A claim sits in limbo; you resolve it with finance.",
+      "coachRole": "Finance analyst",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Expense policy clarification. A claim sits in limbo; you resolve it with finance. I'll start as the finance analyst; you reply as the employee. — We need documentation for the mileage block — what route, business purpose, and can you attach a map or meeting invite so we can release payment?"
+    },
+    {
+      "id": "b2-w-08",
+      "level": "B2",
+      "domain": "work",
+      "title": "Gray-area travel spend",
+      "setting": "Policy interpretation differs by region; you seek a consistent ruling.",
+      "coachRole": "Finance analyst",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Gray-area travel spend. Policy interpretation differs by region; you seek a consistent ruling. I'll start as the finance analyst; you reply as the employee. — This looks like mixed personal and business travel — walk me through intent, what was incremental cost, and what your manager already approved verbally so we can align with policy."
+    },
+    {
+      "id": "c1-w-08",
+      "level": "C1",
+      "domain": "work",
+      "title": "Audit sampling hits your claims",
+      "setting": "Sampling expanded; you defend legitimacy without being defensive.",
+      "coachRole": "Finance analyst",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Audit sampling hits your claims. Sampling expanded; you defend legitimacy without being defensive. I'll start as the finance analyst; you reply as the employee. — Auditors want narrative, not receipts alone — what business outcome each disputed spend supported, who benefited, and what control gap we should close so this does not repeat?"
+    },
+    {
+      "id": "c2-w-08",
+      "level": "C2",
+      "domain": "work",
+      "title": "Fraud signal investigation",
+      "setting": "Pattern triggers review; you cooperate at principle level.",
+      "coachRole": "Finance analyst",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Fraud signal investigation. Pattern triggers review; you cooperate at principle level. I'll start as the finance analyst; you reply as the employee. — We are obligated to ask hard questions — help me reconstruct timelines, identify anyone with shared card access, and tell me what innocent explanation fits the data without asking you to guess our thresholds."
+    },
+    {
+      "id": "a1-w-09",
+      "level": "A1",
+      "domain": "work",
+      "title": "Meeting room",
+      "setting": "Two people want the same room.",
+      "coachRole": "Office coordinator",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Meeting room. Two people want the same room. I'll start as the office coordinator; you reply as the team member. — Hi. Room B is booked for two meetings. Which meeting can move?"
+    },
+    {
+      "id": "a2-w-09",
+      "level": "A2",
+      "domain": "work",
+      "title": "Double-booked room",
+      "setting": "You mediate a scheduling clash for a meeting room.",
+      "coachRole": "Office coordinator",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Double-booked room. You mediate a scheduling clash for a meeting room. I'll start as the office coordinator; you reply as the team member. — Both teams booked Room B at 2 — which meeting is easier to move, and do you need AV for the alternative?"
+    },
+    {
+      "id": "b1-w-09",
+      "level": "B1",
+      "domain": "work",
+      "title": "Room conflict resolution",
+      "setting": "A client workshop conflicts with an internal sync.",
+      "coachRole": "Office coordinator",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Room conflict resolution. A client workshop conflicts with an internal sync. I'll start as the office coordinator; you reply as the team member. — We have a hard conflict on the large room — which event has external stakeholders, what is the backup space you can accept, and how much setup time do you need?"
+    },
+    {
+      "id": "b2-w-09",
+      "level": "B2",
+      "domain": "work",
+      "title": "Resource contention week",
+      "setting": "Multiple teams claim priority; you need a decision rule.",
+      "coachRole": "Office coordinator",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Resource contention week. Multiple teams claim priority; you need a decision rule. I'll start as the office coordinator; you reply as the team member. — Give me the business impact of each meeting, whether either can go hybrid, and what executive sponsor should break the tie if neither moves voluntarily."
+    },
+    {
+      "id": "c1-w-09",
+      "level": "C1",
+      "domain": "work",
+      "title": "Facilities under cost review",
+      "setting": "Room consolidation is rumored; you negotiate workable norms.",
+      "coachRole": "Office coordinator",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: Facilities under cost review. Room consolidation is rumored; you negotiate workable norms. I'll start as the office coordinator; you reply as the team member. — We are being asked to cut footprint — which meetings truly require physical presence, what hybrid standard you can live with, and what fairness principle should govern recurring holds versus ad hoc?"
+    },
+    {
+      "id": "c2-w-09",
+      "level": "C2",
+      "domain": "work",
+      "title": "HQ redesign politics",
+      "setting": "Leadership uses space as power signal; you argue for operational reality.",
+      "coachRole": "Office coordinator",
+      "learnerRole": "Team member",
+      "firstLine": "Scene: HQ redesign politics. Leadership uses space as power signal; you argue for operational reality. I'll start as the office coordinator; you reply as the team member. — Space decisions are becoming a proxy for status — make the case for what work actually requires colocation, what signal sends to clients, and what political cost you are willing to absorb to protect deep-work capacity."
+    },
+    {
+      "id": "a1-w-10",
+      "level": "A1",
+      "domain": "work",
+      "title": "Boss asks progress",
+      "setting": "Your manager asks a simple question in the hall.",
+      "coachRole": "Manager",
+      "learnerRole": "Individual contributor",
+      "firstLine": "Scene: Boss asks progress. Your manager asks a simple question in the hall. I'll start as the manager; you reply as the individual contributor. — Hi. How is the report? Is it finished today?"
+    },
+    {
+      "id": "a2-w-10",
+      "level": "A2",
+      "domain": "work",
+      "title": "Quick status check",
+      "setting": "Your manager wants a brief update on a task.",
+      "coachRole": "Manager",
+      "learnerRole": "Individual contributor",
+      "firstLine": "Scene: Quick status check. Your manager wants a brief update on a task. I'll start as the manager; you reply as the individual contributor. — Hey — where are we on the client deck, and do you need anything from me to finish?"
+    },
+    {
+      "id": "b1-w-10",
+      "level": "B1",
+      "domain": "work",
+      "title": "Manager checkpoint",
+      "setting": "You owe a concise status on a slipping task.",
+      "coachRole": "Manager",
+      "learnerRole": "Individual contributor",
+      "firstLine": "Scene: Manager checkpoint. You owe a concise status on a slipping task. I'll start as the manager; you reply as the individual contributor. — I need a honest snapshot: percent complete, what changed since Monday, and whether you are still comfortable with Friday — what is your read?"
+    },
+    {
+      "id": "b2-w-10",
+      "level": "B2",
+      "domain": "work",
+      "title": "Pressure without micromanagement",
+      "setting": "Your boss senses risk; you re-establish trust with specifics.",
+      "coachRole": "Manager",
+      "learnerRole": "Individual contributor",
+      "firstLine": "Scene: Pressure without micromanagement. Your boss senses risk; you re-establish trust with specifics. I'll start as the manager; you reply as the individual contributor. — Help me understand variance — what assumptions broke, what you already mitigated, and what decision you need from me today versus what you can own silently?"
+    },
+    {
+      "id": "c1-w-10",
+      "level": "C1",
+      "domain": "work",
+      "title": "Credibility repair after a miss",
+      "setting": "A prior deadline slipped; you frame learning and controls.",
+      "coachRole": "Manager",
+      "learnerRole": "Individual contributor",
+      "firstLine": "Scene: Credibility repair after a miss. A prior deadline slipped; you frame learning and controls. I'll start as the manager; you reply as the individual contributor. — I am not looking for excuses — what systemic issue caused the miss, what you changed this week, and what early warning metric you want me to watch next time?"
+    },
+    {
+      "id": "c2-w-10",
+      "level": "C2",
+      "domain": "work",
+      "title": "Career-limiting visibility",
+      "setting": "Executives linked your name to a failure narrative.",
+      "coachRole": "Manager",
+      "learnerRole": "Individual contributor",
+      "firstLine": "Scene: Career-limiting visibility. Executives linked your name to a failure narrative. I'll start as the manager; you reply as the individual contributor. — We need a narrative reset grounded in fact — what you owned versus what was ambiguous in scope, what evidence supports your version, and what risky project you still want after this?"
+    },
+    {
+      "id": "a1-w-11",
+      "level": "A1",
+      "domain": "work",
+      "title": "Late delivery call",
+      "setting": "Your order is late. You call the company.",
+      "coachRole": "Vendor account rep",
+      "learnerRole": "Buyer",
+      "firstLine": "Scene: Late delivery call. Your order is late. You call the company. I'll start as the vendor account rep; you reply as the buyer. — Hello. My order is late. When will it arrive?"
+    },
+    {
+      "id": "a2-w-11",
+      "level": "A2",
+      "domain": "work",
+      "title": "Supplier delay",
+      "setting": "Materials are late; you ask for a realistic ETA.",
+      "coachRole": "Vendor account rep",
+      "learnerRole": "Buyer",
+      "firstLine": "Scene: Supplier delay. Materials are late; you ask for a realistic ETA. I'll start as the vendor account rep; you reply as the buyer. — Our PO 4477 is past due — what is the revised ship date and what caused the delay?"
+    },
+    {
+      "id": "b1-w-11",
+      "level": "B1",
+      "domain": "work",
+      "title": "Vendor slip impacts production",
+      "setting": "You need a recovery plan, not apologies.",
+      "coachRole": "Vendor account rep",
+      "learnerRole": "Buyer",
+      "firstLine": "Scene: Vendor slip impacts production. You need a recovery plan, not apologies. I'll start as the vendor account rep; you reply as the buyer. — This hits our line Friday — confirm root cause, give me a date you will stake your name on, and tell me what expedite options exist at what cost."
+    },
+    {
+      "id": "b2-w-11",
+      "level": "B2",
+      "domain": "work",
+      "title": "Contractual remedy discussion",
+      "setting": "SLA language is fuzzy; you probe remedies without lawyering every line.",
+      "coachRole": "Vendor account rep",
+      "learnerRole": "Buyer",
+      "firstLine": "Scene: Contractual remedy discussion. SLA language is fuzzy; you probe remedies without lawyering every line. I'll start as the vendor account rep; you reply as the buyer. — Walk me through force majeure versus operational failure, what credits you are authorized to offer, and how we document this so procurement does not fight finance."
+    },
+    {
+      "id": "c1-w-11",
+      "level": "C1",
+      "domain": "work",
+      "title": "Strategic supplier relationship",
+      "setting": "You cannot burn the bridge; you still need leverage.",
+      "coachRole": "Vendor account rep",
+      "learnerRole": "Buyer",
+      "firstLine": "Scene: Strategic supplier relationship. You cannot burn the bridge; you still need leverage. I'll start as the vendor account rep; you reply as the buyer. — We are evaluating dual-sourcing — what structural changes you will commit to prevent recurrence, what transparency you will give on capacity, and what economics make staying preferred for both sides?"
+    },
+    {
+      "id": "c2-w-11",
+      "level": "C2",
+      "domain": "work",
+      "title": "Board-level supply shock",
+      "setting": "Disclosure timing matters; you negotiate transparency and liability.",
+      "coachRole": "Vendor account rep",
+      "learnerRole": "Buyer",
+      "firstLine": "Scene: Board-level supply shock. Disclosure timing matters; you negotiate transparency and liability. I'll start as the vendor account rep; you reply as the buyer. — Material impact is likely — what do you know versus suspect, what are you willing to put in writing today, and what governance do we need if this crosses into customer-facing commitments?"
+    },
+    {
+      "id": "a1-w-12",
+      "level": "A1",
+      "domain": "work",
+      "title": "Too loud at work",
+      "setting": "Your neighbor at work is loud. You speak politely.",
+      "coachRole": "Deskmate",
+      "learnerRole": "Colleague",
+      "firstLine": "Scene: Too loud at work. Your neighbor at work is loud. You speak politely. I'll start as the deskmate; you reply as the colleague. — Excuse me. Please talk a little quieter. I need quiet to work."
+    },
+    {
+      "id": "a2-w-12",
+      "level": "A2",
+      "domain": "work",
+      "title": "Noise in open office",
+      "setting": "You ask a coworker to lower call volume.",
+      "coachRole": "Deskmate",
+      "learnerRole": "Colleague",
+      "firstLine": "Scene: Noise in open office. You ask a coworker to lower call volume. I'll start as the deskmate; you reply as the colleague. — Hey — I am on a tight deadline; could you take long calls in the booth or lower your voice a bit?"
+    },
+    {
+      "id": "b1-w-12",
+      "level": "B1",
+      "domain": "work",
+      "title": "Open floor distraction",
+      "setting": "Repeated loud meetings at a nearby desk hurt focus.",
+      "coachRole": "Deskmate",
+      "learnerRole": "Colleague",
+      "firstLine": "Scene: Open floor distraction. Repeated loud meetings at a nearby desk hurt focus. I'll start as the deskmate; you reply as the colleague. — I do not want to be difficult — your calls are carrying. Can we agree on booth use for longer conversations, or different hours for speakerphone?"
+    },
+    {
+      "id": "b2-w-12",
+      "level": "B2",
+      "domain": "work",
+      "title": "Norms conflict on hybrid floor",
+      "setting": "Team culture clashes with concentration needs.",
+      "coachRole": "Deskmate",
+      "learnerRole": "Colleague",
+      "firstLine": "Scene: Norms conflict on hybrid floor. Team culture clashes with concentration needs. I'll start as the deskmate; you reply as the colleague. — We are misaligned on what open plan means — can we define quiet hours or a signal for deep work, and will you help enforce it peer to peer?"
+    },
+    {
+      "id": "c1-w-12",
+      "level": "C1",
+      "domain": "work",
+      "title": "Psychological safety vs productivity",
+      "setting": "A popular teammate is the source of noise; politics matter.",
+      "coachRole": "Deskmate",
+      "learnerRole": "Colleague",
+      "firstLine": "Scene: Psychological safety vs productivity. A popular teammate is the source of noise; politics matter. I'll start as the deskmate; you reply as the colleague. — I need this framed as shared norms, not personal criticism — how do we protect collaboration energy without normalizing constant disruption, and what experiment can we try for two weeks?"
+    },
+    {
+      "id": "c2-w-12",
+      "level": "C2",
+      "domain": "work",
+      "title": "Executive floor etiquette dispute",
+      "setting": "Visibility escalates minor friction; you reset leadership example.",
+      "coachRole": "Deskmate",
+      "learnerRole": "Colleague",
+      "firstLine": "Scene: Executive floor etiquette dispute. Visibility escalates minor friction; you reset leadership example. I'll start as the deskmate; you reply as the colleague. — This became symbolic — what behavior signals we want from leaders in open space, what exceptions are defensible, and how do we avoid a policy memo that kills spontaneity?"
+    },
+    {
+      "id": "a1-w-13",
+      "level": "A1",
+      "domain": "work",
+      "title": "Review help",
+      "setting": "HR helps you prepare for a work review.",
+      "coachRole": "HR partner",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Review help. HR helps you prepare for a work review. I'll start as the hR partner; you reply as the employee. — Hi. Your review is next week. What work do you want to talk about?"
+    },
+    {
+      "id": "a2-w-13",
+      "level": "A2",
+      "domain": "work",
+      "title": "Performance review prep",
+      "setting": "You discuss what evidence to bring to a review.",
+      "coachRole": "HR partner",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Performance review prep. You discuss what evidence to bring to a review. I'll start as the hR partner; you reply as the employee. — Before your review — what wins do you want highlighted, and where do you want growth feedback?"
+    },
+    {
+      "id": "b1-w-13",
+      "level": "B1",
+      "domain": "work",
+      "title": "Review narrative alignment",
+      "setting": "You align on goals and evidence with HR before the manager conversation.",
+      "coachRole": "HR partner",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Review narrative alignment. You align on goals and evidence with HR before the manager conversation. I'll start as the hR partner; you reply as the employee. — Help me pressure-test your story — what outcomes you owned versus supported, metrics you can cite, and concerns you want aired constructively?"
+    },
+    {
+      "id": "b2-w-13",
+      "level": "B2",
+      "domain": "work",
+      "title": "Calibration awareness",
+      "setting": "Ratings are competitive; you position without sounding defensive.",
+      "coachRole": "HR partner",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Calibration awareness. Ratings are competitive; you position without sounding defensive. I'll start as the hR partner; you reply as the employee. — What differentiates your impact from peers at your level, what stretch you took on, and where do you want the conversation to land on development versus compensation?"
+    },
+    {
+      "id": "c1-w-13",
+      "level": "C1",
+      "domain": "work",
+      "title": "Bias-aware review coaching",
+      "setting": "Identity dynamics may affect perception; you prepare language.",
+      "coachRole": "HR partner",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Bias-aware review coaching. Identity dynamics may affect perception; you prepare language. I'll start as the hR partner; you reply as the employee. — Where might your contributions be under-visible, what third-party validation helps, and how do you want to redirect if feedback drifts into style over substance?"
+    },
+    {
+      "id": "c2-w-13",
+      "level": "C2",
+      "domain": "work",
+      "title": "Executive promotion discussion",
+      "setting": "Stakeholders disagree on readiness; you craft a principled case.",
+      "coachRole": "HR partner",
+      "learnerRole": "Employee",
+      "firstLine": "Scene: Executive promotion discussion. Stakeholders disagree on readiness; you craft a principled case. I'll start as the hR partner; you reply as the employee. — What bar you are being held to implicitly versus explicitly, what risks sponsors are weighing, and what trade-off you propose if promotion is deferred — with timeline?"
+    },
+    {
+      "id": "a1-w-14",
+      "level": "A1",
+      "domain": "work",
+      "title": "First day call",
+      "setting": "It is your first day at a new job from home.",
+      "coachRole": "Onboarding buddy",
+      "learnerRole": "New hire",
+      "firstLine": "Scene: First day call. It is your first day at a new job from home. I'll start as the onboarding buddy; you reply as the new hire. — Welcome! What tools can you open? Do you see your email?"
+    },
+    {
+      "id": "a2-w-14",
+      "level": "A2",
+      "domain": "work",
+      "title": "Remote onboarding check",
+      "setting": "A buddy helps you access systems on day one.",
+      "coachRole": "Onboarding buddy",
+      "learnerRole": "New hire",
+      "firstLine": "Scene: Remote onboarding check. A buddy helps you access systems on day one. I'll start as the onboarding buddy; you reply as the new hire. — Let us verify access — can you log into chat, VPN, and the HR portal, and tell me where you are stuck?"
+    },
+    {
+      "id": "b1-w-14",
+      "level": "B1",
+      "domain": "work",
+      "title": "Day-one remote setup",
+      "setting": "You need a prioritized list to become productive quickly.",
+      "coachRole": "Onboarding buddy",
+      "learnerRole": "New hire",
+      "firstLine": "Scene: Day-one remote setup. You need a prioritized list to become productive quickly. I'll start as the onboarding buddy; you reply as the new hire. — I want a realistic first-week plan — what accounts matter most, who owns approvals, and what meetings you should not skip?"
+    },
+    {
+      "id": "b2-w-14",
+      "level": "B2",
+      "domain": "work",
+      "title": "Onboarding friction across time zones",
+      "setting": "Delays cascade; you negotiate a workable ramp.",
+      "coachRole": "Onboarding buddy",
+      "learnerRole": "New hire",
+      "firstLine": "Scene: Onboarding friction across time zones. Delays cascade; you negotiate a workable ramp. I'll start as the onboarding buddy; you reply as the new hire. — What blockers are process versus tooling, what can async, and what synchronous touchpoints you need from your manager so you are not idle three days?"
+    },
+    {
+      "id": "c1-w-14",
+      "level": "C1",
+      "domain": "work",
+      "title": "Cultural assimilation remote",
+      "setting": "Informal knowledge transfer is weak; you address it explicitly.",
+      "coachRole": "Onboarding buddy",
+      "learnerRole": "New hire",
+      "firstLine": "Scene: Cultural assimilation remote. Informal knowledge transfer is weak; you address it explicitly. I'll start as the onboarding buddy; you reply as the new hire. — What unwritten rules I should know, who actually decides things versus who appears to, and what network gaps put me at a disadvantage if we do not fix them early?"
+    },
+    {
+      "id": "c2-w-14",
+      "level": "C2",
+      "domain": "work",
+      "title": "Merger onboarding ambiguity",
+      "setting": "Dual systems and loyalty questions; you navigate identity.",
+      "coachRole": "Onboarding buddy",
+      "learnerRole": "New hire",
+      "firstLine": "Scene: Merger onboarding ambiguity. Dual systems and loyalty questions; you navigate identity. I'll start as the onboarding buddy; you reply as the new hire. — Which norms survive the integration, where are we pretending alignment while competing internally, and what do you need from me to model constructive ambiguity?"
+    },
+    {
+      "id": "a1-w-15",
+      "level": "A1",
+      "domain": "work",
+      "title": "Too much work",
+      "setting": "Someone wants work very fast. You say it is hard.",
+      "coachRole": "Product manager",
+      "learnerRole": "Engineer",
+      "firstLine": "Scene: Too much work. Someone wants work very fast. You say it is hard. I'll start as the product manager; you reply as the engineer. — Hi. Friday is very fast for me. Can we change the date?"
+    },
+    {
+      "id": "a2-w-15",
+      "level": "A2",
+      "domain": "work",
+      "title": "Tight deadline",
+      "setting": "You push back politely on an aggressive date.",
+      "coachRole": "Product manager",
+      "learnerRole": "Engineer",
+      "firstLine": "Scene: Tight deadline. You push back politely on an aggressive date. I'll start as the product manager; you reply as the engineer. — Friday is risky for quality — what can we cut from scope or move to a follow-up release?"
+    },
+    {
+      "id": "b1-w-15",
+      "level": "B1",
+      "domain": "work",
+      "title": "Scope versus date trade-off",
+      "setting": "You negotiate what ships on the original milestone.",
+      "coachRole": "Product manager",
+      "learnerRole": "Engineer",
+      "firstLine": "Scene: Scope versus date trade-off. You negotiate what ships on the original milestone. I'll start as the product manager; you reply as the engineer. — I can hit Friday if we freeze requirements today and drop the analytics slice — which cut hurts the business less, and who approves it?"
+    },
+    {
+      "id": "b2-w-15",
+      "level": "B2",
+      "domain": "work",
+      "title": "Commitment engineering under sales pressure",
+      "setting": "Commercial promises pre-empted technical reality.",
+      "coachRole": "Product manager",
+      "learnerRole": "Engineer",
+      "firstLine": "Scene: Commitment engineering under sales pressure. Commercial promises pre-empted technical reality. I'll start as the product manager; you reply as the engineer. — Help me map what was promised externally versus what is feasible — what narrative we give sales, what buffer we hide responsibly, and what governance stops this recurring?"
+    },
+    {
+      "id": "c1-w-15",
+      "level": "C1",
+      "domain": "work",
+      "title": "Organizational overcommitment",
+      "setting": "You challenge systemic overload, not just this ticket.",
+      "coachRole": "Product manager",
+      "learnerRole": "Engineer",
+      "firstLine": "Scene: Organizational overcommitment. You challenge systemic overload, not just this ticket. I'll start as the product manager; you reply as the engineer. — We are burning credibility — what portfolio decision you will defend to leadership, what you will stop starting, and what metric proves we are lying to ourselves about capacity?"
+    },
+    {
+      "id": "c2-w-15",
+      "level": "C2",
+      "domain": "work",
+      "title": "Pre-mortem before a flagship launch",
+      "setting": "Careers ride on the date; you force explicit risk ownership.",
+      "coachRole": "Product manager",
+      "learnerRole": "Engineer",
+      "firstLine": "Scene: Pre-mortem before a flagship launch. Careers ride on the date; you force explicit risk ownership. I'll start as the product manager; you reply as the engineer. — If this launches and fails, whose decision tree gets scrutinized — what are we shipping with known defects, who signs residual risk, and what kill criteria we will actually honor?"
+    },
+    {
+      "id": "a1-w-16",
+      "level": "A1",
+      "domain": "work",
+      "title": "Waiting on another team",
+      "setting": "Your work waits for another team. You ask them.",
+      "coachRole": "Partner team lead",
+      "learnerRole": "Project owner",
+      "firstLine": "Scene: Waiting on another team. Your work waits for another team. You ask them. I'll start as the partner team lead; you reply as the project owner. — Hello. We need your API. When can you finish it?"
+    },
+    {
+      "id": "a2-w-16",
+      "level": "A2",
+      "domain": "work",
+      "title": "Dependency delay",
+      "setting": "Another team blocks your milestone; you request a date.",
+      "coachRole": "Partner team lead",
+      "learnerRole": "Project owner",
+      "firstLine": "Scene: Dependency delay. Another team blocks your milestone; you request a date. I'll start as the partner team lead; you reply as the project owner. — We are blocked on your schema change — what is realistic for delivery, and can we get a daily checkpoint until it lands?"
+    },
+    {
+      "id": "b1-w-16",
+      "level": "B1",
+      "domain": "work",
+      "title": "Unblocking a shared dependency",
+      "setting": "Two teams share accountability; you clarify handoffs.",
+      "coachRole": "Partner team lead",
+      "learnerRole": "Project owner",
+      "firstLine": "Scene: Unblocking a shared dependency. Two teams share accountability; you clarify handoffs. I'll start as the partner team lead; you reply as the project owner. — I need a joint plan: your remaining tasks, our integration tests, and a single owner for cutover — what do you propose?"
+    },
+    {
+      "id": "b2-w-16",
+      "level": "B2",
+      "domain": "work",
+      "title": "Political dependency gridlock",
+      "setting": "Priorities conflict; you seek escalation path.",
+      "coachRole": "Partner team lead",
+      "learnerRole": "Project owner",
+      "firstLine": "Scene: Political dependency gridlock. Priorities conflict; you seek escalation path. I'll start as the partner team lead; you reply as the project owner. — We are misaligned on priority — what your team owes versus what mine does, where the dispute should be decided, and what interim workaround protects users?"
+    },
+    {
+      "id": "c1-w-16",
+      "level": "C1",
+      "domain": "work",
+      "title": "Matrix organization stalemate",
+      "setting": "Incentives misalign; you reframe shared OKRs.",
+      "coachRole": "Partner team lead",
+      "learnerRole": "Project owner",
+      "firstLine": "Scene: Matrix organization stalemate. Incentives misalign; you reframe shared OKRs. I'll start as the partner team lead; you reply as the project owner. — What outcome we both get graded on, what local optimization is hurting it, and what executive alignment you need me to help secure without making you look bad?"
+    },
+    {
+      "id": "c2-w-16",
+      "level": "C2",
+      "domain": "work",
+      "title": "Ecosystem partnership tension",
+      "setting": "External partner and internal team blame each other.",
+      "coachRole": "Partner team lead",
+      "learnerRole": "Project owner",
+      "firstLine": "Scene: Ecosystem partnership tension. External partner and internal team blame each other. I'll start as the partner team lead; you reply as the project owner. — Separate narrative from obligation — what contract and what handshake actually govern behavior, what evidence each side has, and what joint steering body can decide without litigation vibes?"
+    },
+    {
+      "id": "a1-w-17",
+      "level": "A1",
+      "domain": "work",
+      "title": "Angry customer",
+      "setting": "A customer is unhappy on the phone.",
+      "coachRole": "Angry customer",
+      "learnerRole": "Support agent",
+      "firstLine": "Scene: Angry customer. A customer is unhappy on the phone. I'll start as the angry customer; you reply as the support agent. — I am upset! My product is broken! What will you do?"
+    },
+    {
+      "id": "a2-w-17",
+      "level": "A2",
+      "domain": "work",
+      "title": "Handling a complaint",
+      "setting": "A customer raises voice about a defect; you stay calm.",
+      "coachRole": "Angry customer",
+      "learnerRole": "Support agent",
+      "firstLine": "Scene: Handling a complaint. A customer raises voice about a defect; you stay calm. I'll start as the angry customer; you reply as the support agent. — I hear you — let us fix this. What is the product, when did it fail, and what do you want as a fair outcome?"
+    },
+    {
+      "id": "b1-w-17",
+      "level": "B1",
+      "domain": "work",
+      "title": "Escalated support call",
+      "setting": "You de-escalate while gathering facts for a refund decision.",
+      "coachRole": "Angry customer",
+      "learnerRole": "Support agent",
+      "firstLine": "Scene: Escalated support call. You de-escalate while gathering facts for a refund decision. I'll start as the angry customer; you reply as the support agent. — I am sorry this happened — walk me through what you tried, what broke our promise, and whether replacement or refund gets you whole faster."
+    },
+    {
+      "id": "b2-w-17",
+      "level": "B2",
+      "domain": "work",
+      "title": "Retention-risk complaint",
+      "setting": "Social media threat is implied; you balance policy and brand.",
+      "coachRole": "Angry customer",
+      "learnerRole": "Support agent",
+      "firstLine": "Scene: Retention-risk complaint. Social media threat is implied; you balance policy and brand. I'll start as the angry customer; you reply as the support agent. — Help me understand public-facing risk, what you already posted, what remedy closes the loop privately, and what timeline you consider reasonable?"
+    },
+    {
+      "id": "c1-w-17",
+      "level": "C1",
+      "domain": "work",
+      "title": "Values clash with policy",
+      "setting": "Customer cites fairness; policy is rigid; you interpret humanely.",
+      "coachRole": "Angry customer",
+      "learnerRole": "Support agent",
+      "firstLine": "Scene: Values clash with policy. Customer cites fairness; policy is rigid; you interpret humanely. I'll start as the angry customer; you reply as the support agent. — Where is policy failing your legitimate expectation, what precedent worries you if we say no, and what creative within-bounds fix signals we listened?"
+    },
+    {
+      "id": "c2-w-17",
+      "level": "C2",
+      "domain": "work",
+      "title": "Regulatory undertone complaint",
+      "setting": "Legal language appears; you avoid admissions while repairing.",
+      "coachRole": "Angry customer",
+      "learnerRole": "Support agent",
+      "firstLine": "Scene: Regulatory undertone complaint. Legal language appears; you avoid admissions while repairing. I'll start as the angry customer; you reply as the support agent. — What counsel advised you, what facts are undisputed, what remedy you seek that is not punitive, and how do we document resolution without creating liability theater?"
+    },
+    {
+      "id": "a1-w-18",
+      "level": "A1",
+      "domain": "work",
+      "title": "Training room",
+      "setting": "A trainer checks if you can hear before a class.",
+      "coachRole": "Trainer",
+      "learnerRole": "Participant",
+      "firstLine": "Scene: Training room. A trainer checks if you can hear before a class. I'll start as the trainer; you reply as the participant. — Hello. Can you hear me? Is your microphone on?"
+    },
+    {
+      "id": "a2-w-18",
+      "level": "A2",
+      "domain": "work",
+      "title": "Workshop tech check",
+      "setting": "You join a training session; the host tests audio.",
+      "coachRole": "Trainer",
+      "learnerRole": "Participant",
+      "firstLine": "Scene: Workshop tech check. You join a training session; the host tests audio. I'll start as the trainer; you reply as the participant. — Quick AV check — can you hear me clearly, and can you unmute and say your name?"
+    },
+    {
+      "id": "b1-w-18",
+      "level": "B1",
+      "domain": "work",
+      "title": "Hybrid training readiness",
+      "setting": "Some people are remote; you confirm participation modes.",
+      "coachRole": "Trainer",
+      "learnerRole": "Participant",
+      "firstLine": "Scene: Hybrid training readiness. Some people are remote; you confirm participation modes. I'll start as the trainer; you reply as the participant. — We are hybrid today — confirm your camera policy, whether slides are visible, and if breakout rooms will work on your device."
+    },
+    {
+      "id": "b2-w-18",
+      "level": "B2",
+      "domain": "work",
+      "title": "Facilitator under tool failure",
+      "setting": "Platform glitches; you co-create a fallback.",
+      "coachRole": "Trainer",
+      "learnerRole": "Participant",
+      "firstLine": "Scene: Facilitator under tool failure. Platform glitches; you co-create a fallback. I'll start as the trainer; you reply as the participant. — We lost screen share — what alternative channel works for you, how we preserve engagement, and whether we should pause versus push audio-only?"
+    },
+    {
+      "id": "c1-w-18",
+      "level": "C1",
+      "domain": "work",
+      "title": "Global audience accessibility",
+      "setting": "Captions, language, and bandwidth vary; you negotiate norms.",
+      "coachRole": "Trainer",
+      "learnerRole": "Participant",
+      "firstLine": "Scene: Global audience accessibility. Captions, language, and bandwidth vary; you negotiate norms. I'll start as the trainer; you reply as the participant. — What accessibility needs we have not surfaced, what pace disadvantages non-native speakers, and what async supplement makes this fair without doubling your prep?"
+    },
+    {
+      "id": "c2-w-18",
+      "level": "C2",
+      "domain": "work",
+      "title": "Executive academy credibility",
+      "setting": "VIP participants challenge format; you defend design.",
+      "coachRole": "Trainer",
+      "learnerRole": "Participant",
+      "firstLine": "Scene: Executive academy credibility. VIP participants challenge format; you defend design. I'll start as the trainer; you reply as the participant. — What skepticism about this format is valid, what learning science we are betting on, and what concession you will make without turning this into a passive webinar?"
+    },
+    {
+      "id": "a1-l-01",
+      "level": "A1",
+      "domain": "life",
+      "title": "Pharmacy — medicine",
+      "setting": "You need simple help at a pharmacy.",
+      "coachRole": "Pharmacist",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Pharmacy — medicine. You need simple help at a pharmacy. I'll start as the pharmacist; you reply as the customer. — Hello. I need medicine for a headache. Can you help me?"
+    },
+    {
+      "id": "a2-l-01",
+      "level": "A2",
+      "domain": "life",
+      "title": "Over-the-counter advice",
+      "setting": "You ask about a mild symptom and suitable OTC options.",
+      "coachRole": "Pharmacist",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Over-the-counter advice. You ask about a mild symptom and suitable OTC options. I'll start as the pharmacist; you reply as the customer. — I have allergy symptoms — what do you recommend that will not make me drowsy for work?"
+    },
+    {
+      "id": "b1-l-01",
+      "level": "B1",
+      "domain": "life",
+      "title": "Medication interaction check",
+      "setting": "You take a regular prescription and need OTC guidance.",
+      "coachRole": "Pharmacist",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Medication interaction check. You take a regular prescription and need OTC guidance. I'll start as the pharmacist; you reply as the customer. — I am on blood pressure medication — is this cough syrup safe with it, and what side effects should I watch for?"
+    },
+    {
+      "id": "b2-l-01",
+      "level": "B2",
+      "domain": "life",
+      "title": "Complex OTC triage",
+      "setting": "Multiple products failed; you seek a structured recommendation.",
+      "coachRole": "Pharmacist",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Complex OTC triage. Multiple products failed; you seek a structured recommendation. I'll start as the pharmacist; you reply as the customer. — I tried two antihistamines without relief — given my history, what active ingredient should we try next, and when should I see a clinician instead?"
+    },
+    {
+      "id": "c1-l-01",
+      "level": "C1",
+      "domain": "life",
+      "title": "Guardian picking up prescription",
+      "setting": "Consent and privacy intersect; you clarify responsibilities.",
+      "coachRole": "Pharmacist",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Guardian picking up prescription. Consent and privacy intersect; you clarify responsibilities. I'll start as the pharmacist; you reply as the customer. — I am picking up for my parent — what verification you need, what counseling you can share with me versus them, and how we handle dosage changes they may not remember?"
+    },
+    {
+      "id": "c2-l-01",
+      "level": "C2",
+      "domain": "life",
+      "title": "Cross-border prescription confusion",
+      "setting": "Regulatory framing matters; you avoid unsafe assumptions.",
+      "coachRole": "Pharmacist",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Cross-border prescription confusion. Regulatory framing matters; you avoid unsafe assumptions. I'll start as the pharmacist; you reply as the customer. — This was prescribed abroad — what equivalencies you can honor, what documentation closes liability, and what clinical red lines mean you must refuse despite urgency?"
+    },
+    {
+      "id": "a1-l-02",
+      "level": "A1",
+      "domain": "life",
+      "title": "Which bus",
+      "setting": "You are at a bus stop in a new city.",
+      "coachRole": "Local passenger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Which bus. You are at a bus stop in a new city. I'll start as the local passenger; you reply as the visitor. — Excuse me. I go to the museum. Is this the right bus?"
+    },
+    {
+      "id": "a2-l-02",
+      "level": "A2",
+      "domain": "life",
+      "title": "Transit directions",
+      "setting": "You confirm route and stop with a stranger.",
+      "coachRole": "Local passenger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Transit directions. You confirm route and stop with a stranger. I'll start as the local passenger; you reply as the visitor. — Does the 12 stop here for Central Library, and do I need a transfer?"
+    },
+    {
+      "id": "b1-l-02",
+      "level": "B1",
+      "domain": "life",
+      "title": "Night service and safety",
+      "setting": "You plan a return trip after an event.",
+      "coachRole": "Local passenger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Night service and safety. You plan a return trip after an event. I'll start as the local passenger; you reply as the visitor. — I need to get back after 11 — which routes still run, how frequent are they, and is there a safer stop if this one feels isolated?"
+    },
+    {
+      "id": "b2-l-02",
+      "level": "B2",
+      "domain": "life",
+      "title": "Disruption day travel",
+      "setting": "A strike or detour changes plans; you adapt.",
+      "coachRole": "Local passenger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Disruption day travel. A strike or detour changes plans; you adapt. I'll start as the local passenger; you reply as the visitor. — Official apps conflict — what is actually running on this corridor, what workaround locals use, and how much buffer I should add?"
+    },
+    {
+      "id": "c1-l-02",
+      "level": "C1",
+      "domain": "life",
+      "title": "Accessibility needs on transit",
+      "setting": "Mobility and anxiety interact; you ask for dignity-preserving options.",
+      "coachRole": "Local passenger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Accessibility needs on transit. Mobility and anxiety interact; you ask for dignity-preserving options. I'll start as the local passenger; you reply as the visitor. — I need step-free access and predictable crowding — which lines and times fit, what staff assistance exists, and how do I avoid being stranded if elevators fail?"
+    },
+    {
+      "id": "c2-l-02",
+      "level": "C2",
+      "domain": "life",
+      "title": "City mobility equity debate",
+      "setting": "A community meeting discusses service cuts; you argue a case.",
+      "coachRole": "Local passenger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: City mobility equity debate. A community meeting discusses service cuts; you argue a case. I'll start as the local passenger; you reply as the visitor. — Frame who bears the cost of this cut, what second-order effects on night-shift workers you are ignoring, and what revenue or priority shift would preserve coverage without magical thinking?"
+    },
+    {
+      "id": "a1-l-03",
+      "level": "A1",
+      "domain": "life",
+      "title": "Loud neighbor",
+      "setting": "Your neighbor is loud at night. You knock and speak simply.",
+      "coachRole": "Neighbor",
+      "learnerRole": "Resident",
+      "firstLine": "Scene: Loud neighbor. Your neighbor is loud at night. You knock and speak simply. I'll start as the neighbor; you reply as the resident. — Hi. Sorry — the music is very loud. Can you make it quieter, please?"
+    },
+    {
+      "id": "a2-l-03",
+      "level": "A2",
+      "domain": "life",
+      "title": "Apartment noise",
+      "setting": "You ask a neighbor to lower volume after hours.",
+      "coachRole": "Neighbor",
+      "learnerRole": "Resident",
+      "firstLine": "Scene: Apartment noise. You ask a neighbor to lower volume after hours. I'll start as the neighbor; you reply as the resident. — Hey — I have an early morning tomorrow; could you turn the bass down after 10?"
+    },
+    {
+      "id": "b1-l-03",
+      "level": "B1",
+      "domain": "life",
+      "title": "Noise pattern conversation",
+      "setting": "Repeated issues; you seek a practical agreement.",
+      "coachRole": "Neighbor",
+      "learnerRole": "Resident",
+      "firstLine": "Scene: Noise pattern conversation. Repeated issues; you seek a practical agreement. I'll start as the neighbor; you reply as the resident. — This has been a few Tuesdays in a row — can we agree on quiet hours or moving speakers off the shared wall?"
+    },
+    {
+      "id": "b2-l-03",
+      "level": "B2",
+      "domain": "life",
+      "title": "Noise and lease norms",
+      "setting": "Relationship is strained; you reference building rules lightly.",
+      "coachRole": "Neighbor",
+      "learnerRole": "Resident",
+      "firstLine": "Scene: Noise and lease norms. Relationship is strained; you reference building rules lightly. I'll start as the neighbor; you reply as the resident. — I want to avoid involving management — what schedule works for your gatherings, and can we text if it spikes so I do not have to knock cold?"
+    },
+    {
+      "id": "c1-l-03",
+      "level": "C1",
+      "domain": "life",
+      "title": "Cultural difference on noise",
+      "setting": "Interpretations of courtesy differ; you bridge without accusing.",
+      "coachRole": "Neighbor",
+      "learnerRole": "Resident",
+      "firstLine": "Scene: Cultural difference on noise. Interpretations of courtesy differ; you bridge without accusing. I'll start as the neighbor; you reply as the resident. — Help me understand your norms versus mine — what you consider reasonable hours, what you did not realize carried, and what small change would feel respectful on both sides?"
+    },
+    {
+      "id": "c2-l-03",
+      "level": "C2",
+      "domain": "life",
+      "title": "Mediation-ready neighbor dispute",
+      "setting": "HOA may intervene; you propose a durable pact.",
+      "coachRole": "Neighbor",
+      "learnerRole": "Resident",
+      "firstLine": "Scene: Mediation-ready neighbor dispute. HOA may intervene; you propose a durable pact. I'll start as the neighbor; you reply as the resident. — We are one complaint away from escalation — what measurable standard we both accept, what exceptions for holidays, and what third-party process you prefer if we slip?"
+    },
+    {
+      "id": "a1-l-04",
+      "level": "A1",
+      "domain": "life",
+      "title": "Gym — freeze",
+      "setting": "You will travel. You ask about your gym.",
+      "coachRole": "Gym front desk",
+      "learnerRole": "Member",
+      "firstLine": "Scene: Gym — freeze. You will travel. You ask about your gym. I'll start as the gym front desk; you reply as the member. — Hello. I travel next month. Can I stop my gym for one month?"
+    },
+    {
+      "id": "a2-l-04",
+      "level": "A2",
+      "domain": "life",
+      "title": "Membership pause",
+      "setting": "You inquire about freezing membership for travel.",
+      "coachRole": "Gym front desk",
+      "learnerRole": "Member",
+      "firstLine": "Scene: Membership pause. You inquire about freezing membership for travel. I'll start as the gym front desk; you reply as the member. — I will be away six weeks — do you offer a freeze, and what is the fee or notice period?"
+    },
+    {
+      "id": "b1-l-04",
+      "level": "B1",
+      "domain": "life",
+      "title": "Contract terms for injury",
+      "setting": "You hurt your knee; you need billing relief.",
+      "coachRole": "Gym front desk",
+      "learnerRole": "Member",
+      "firstLine": "Scene: Contract terms for injury. You hurt your knee; you need billing relief. I'll start as the gym front desk; you reply as the member. — My doctor advised no squats for two months — what medical documentation you need to pause billing, and how reinstatement works?"
+    },
+    {
+      "id": "b2-l-04",
+      "level": "B2",
+      "domain": "life",
+      "title": "Membership dispute after move",
+      "setting": "Location closed; you negotiate transfer or exit.",
+      "coachRole": "Gym front desk",
+      "learnerRole": "Member",
+      "firstLine": "Scene: Membership dispute after move. Location closed; you negotiate transfer or exit. I'll start as the gym front desk; you reply as the member. — My home club shut — what nearest option honors my rate, what commute is reasonable under your policy, and if neither works what exit path exists?"
+    },
+    {
+      "id": "c1-l-04",
+      "level": "C1",
+      "domain": "life",
+      "title": "Predatory clause challenge",
+      "setting": "Auto-renew surprised you; you seek principled resolution.",
+      "coachRole": "Gym front desk",
+      "learnerRole": "Member",
+      "firstLine": "Scene: Predatory clause challenge. Auto-renew surprised you; you seek principled resolution. I'll start as the gym front desk; you reply as the member. — What notice you claim you sent versus what I received, what good-faith interpretation regulators expect here, and what resolution avoids small-claims but respects my time?"
+    },
+    {
+      "id": "c2-l-04",
+      "level": "C2",
+      "domain": "life",
+      "title": "Class-action adjacent pressure",
+      "setting": "Public thread names the chain; manager has latitude.",
+      "coachRole": "Gym front desk",
+      "learnerRole": "Member",
+      "firstLine": "Scene: Class-action adjacent pressure. Public thread names the chain; manager has latitude. I'll start as the gym front desk; you reply as the member. — What systemic practice you will admit, what remediation batch you are authorized to offer, and what governance change you will document so this is not another PR cycle?"
+    },
+    {
+      "id": "a1-l-05",
+      "level": "A1",
+      "domain": "life",
+      "title": "Broken heat",
+      "setting": "Your apartment is cold. You call the landlord.",
+      "coachRole": "Landlord",
+      "learnerRole": "Tenant",
+      "firstLine": "Scene: Broken heat. Your apartment is cold. You call the landlord. I'll start as the landlord; you reply as the tenant. — Hello. My heat is broken. It is very cold. Please help."
+    },
+    {
+      "id": "a2-l-05",
+      "level": "A2",
+      "domain": "life",
+      "title": "Repair request",
+      "setting": "You report a maintenance issue in your rental.",
+      "coachRole": "Landlord",
+      "learnerRole": "Tenant",
+      "firstLine": "Scene: Repair request. You report a maintenance issue in your rental. I'll start as the landlord; you reply as the tenant. — The bathroom fan stopped working and moisture is building — can you send someone this week?"
+    },
+    {
+      "id": "b1-l-05",
+      "level": "B1",
+      "domain": "life",
+      "title": "Habitability timeline",
+      "setting": "Heat fails in winter; you need a clear fix window.",
+      "coachRole": "Landlord",
+      "learnerRole": "Tenant",
+      "firstLine": "Scene: Habitability timeline. Heat fails in winter; you need a clear fix window. I'll start as the landlord; you reply as the tenant. — It has been three nights without reliable heat — what is your plan, who is the contractor, and what temporary remedy can you authorize tonight?"
+    },
+    {
+      "id": "b2-l-05",
+      "level": "B2",
+      "domain": "life",
+      "title": "Repair vs rent withholding",
+      "setting": "Law is unclear locally; you negotiate without threats.",
+      "coachRole": "Landlord",
+      "learnerRole": "Tenant",
+      "firstLine": "Scene: Repair vs rent withholding. Law is unclear locally; you negotiate without threats. I'll start as the landlord; you reply as the tenant. — I need this documented — what entry notice you will give, what standard you consider complete, and how we handle rent if the window slips again?"
+    },
+    {
+      "id": "c1-l-05",
+      "level": "C1",
+      "domain": "life",
+      "title": "Retaliation-sensitive tenancy",
+      "setting": "You fear pushback for complaining; you seek professional tone.",
+      "coachRole": "Landlord",
+      "learnerRole": "Tenant",
+      "firstLine": "Scene: Retaliation-sensitive tenancy. You fear pushback for complaining; you seek professional tone. I'll start as the landlord; you reply as the tenant. — I want a paper trail that helps both of us — what timeline you commit to, what communication channel you prefer, and how we de-escalate if neighbors are also affected?"
+    },
+    {
+      "id": "c2-l-05",
+      "level": "C2",
+      "domain": "life",
+      "title": "Portfolio landlord leverage",
+      "setting": "Scale asymmetry; you argue for systemic accountability.",
+      "coachRole": "Landlord",
+      "learnerRole": "Tenant",
+      "firstLine": "Scene: Portfolio landlord leverage. Scale asymmetry; you argue for systemic accountability. I'll start as the landlord; you reply as the tenant. — This pattern matches other units — what root cause in your vendor chain, what audit you will run, and what concession makes me confident this is not perpetual churn?"
+    },
+    {
+      "id": "a1-l-06",
+      "level": "A1",
+      "domain": "life",
+      "title": "Doctor office",
+      "setting": "A nurse asks why you came to the clinic.",
+      "coachRole": "Clinic nurse",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Doctor office. A nurse asks why you came to the clinic. I'll start as the clinic nurse; you reply as the patient. — Hello. Why are you here today? Where does it hurt?"
+    },
+    {
+      "id": "a2-l-06",
+      "level": "A2",
+      "domain": "life",
+      "title": "Triage questions",
+      "setting": "You describe basic symptoms at a walk-in clinic.",
+      "coachRole": "Clinic nurse",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Triage questions. You describe basic symptoms at a walk-in clinic. I'll start as the clinic nurse; you reply as the patient. — What is bothering you most today, how long has it lasted, and any fever?"
+    },
+    {
+      "id": "b1-l-06",
+      "level": "B1",
+      "domain": "life",
+      "title": "Structured symptom history",
+      "setting": "You prepare for a clinician with clearer chronology.",
+      "coachRole": "Clinic nurse",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Structured symptom history. You prepare for a clinician with clearer chronology. I'll start as the clinic nurse; you reply as the patient. — Walk me through onset, what makes it better or worse, medications you took, and anything similar before?"
+    },
+    {
+      "id": "b2-l-06",
+      "level": "B2",
+      "domain": "life",
+      "title": "Chronic condition flare",
+      "setting": "You differentiate new red flags from baseline.",
+      "coachRole": "Clinic nurse",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Chronic condition flare. You differentiate new red flags from baseline. I'll start as the clinic nurse; you reply as the patient. — I have a known condition — what changed this episode versus my usual flare, and what tests I should insist on versus wait out?"
+    },
+    {
+      "id": "c1-l-06",
+      "level": "C1",
+      "domain": "life",
+      "title": "Advocacy under time pressure",
+      "setting": "You feel dismissed; you stay evidence-based.",
+      "coachRole": "Clinic nurse",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Advocacy under time pressure. You feel dismissed; you stay evidence-based. I'll start as the clinic nurse; you reply as the patient. — What differential you are considering, what data would change your plan, and how do I request a second opinion without poisoning this relationship?"
+    },
+    {
+      "id": "c2-l-06",
+      "level": "C2",
+      "domain": "life",
+      "title": "Cross-disciplinary care coordination",
+      "setting": "Specialists disagree; you force a synthesis.",
+      "coachRole": "Clinic nurse",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Cross-disciplinary care coordination. Specialists disagree; you force a synthesis. I'll start as the clinic nurse; you reply as the patient. — What conflict exists between recommendations, what risk each stance underestimates, and what decision framework gets me to one accountable path this week?"
+    },
+    {
+      "id": "a1-l-07",
+      "level": "A1",
+      "domain": "life",
+      "title": "Food allergy",
+      "setting": "You order food and you have an allergy.",
+      "coachRole": "Server",
+      "learnerRole": "Diner",
+      "firstLine": "Scene: Food allergy. You order food and you have an allergy. I'll start as the server; you reply as the diner. — Hi. I cannot eat nuts. Is this dish safe for me?"
+    },
+    {
+      "id": "a2-l-07",
+      "level": "A2",
+      "domain": "life",
+      "title": "Allergy check at restaurant",
+      "setting": "You ask about ingredients before ordering.",
+      "coachRole": "Server",
+      "learnerRole": "Diner",
+      "firstLine": "Scene: Allergy check at restaurant. You ask about ingredients before ordering. I'll start as the server; you reply as the diner. — I have a shellfish allergy — does the kitchen share fryers or sauces I should worry about?"
+    },
+    {
+      "id": "b1-l-07",
+      "level": "B1",
+      "domain": "life",
+      "title": "Serious allergy order",
+      "setting": "You need staff to confirm with kitchen, not guess.",
+      "coachRole": "Server",
+      "learnerRole": "Diner",
+      "firstLine": "Scene: Serious allergy order. You need staff to confirm with kitchen, not guess. I'll start as the server; you reply as the diner. — I carry epinephrine — please confirm with the chef whether this dish contains dairy or traces, and what alternative you recommend if not."
+    },
+    {
+      "id": "b2-l-07",
+      "level": "B2",
+      "domain": "life",
+      "title": "Cross-contamination risk",
+      "setting": "Menu is ambiguous; you push for clarity without drama.",
+      "coachRole": "Server",
+      "learnerRole": "Diner",
+      "firstLine": "Scene: Cross-contamination risk. Menu is ambiguous; you push for clarity without drama. I'll start as the server; you reply as the diner. — I need a conservative read — what prep surfaces touch nuts, what the kitchen can realistically segregate tonight, and what off-menu simple plate is safest?"
+    },
+    {
+      "id": "c1-l-07",
+      "level": "C1",
+      "domain": "life",
+      "title": "Restaurant liability conversation",
+      "setting": "A prior incident makes you vigilant; you stay collaborative.",
+      "coachRole": "Server",
+      "learnerRole": "Diner",
+      "firstLine": "Scene: Restaurant liability conversation. A prior incident makes you vigilant; you stay collaborative. I'll start as the server; you reply as the diner. — What protocol you follow for anaphylaxis risk, who signs off on exceptions, and how you document what you told me if something goes wrong?"
+    },
+    {
+      "id": "c2-l-07",
+      "level": "C2",
+      "domain": "life",
+      "title": "Group dinner with divergent dietary ethics",
+      "setting": "Host pressure meets medical need; you navigate gracefully.",
+      "coachRole": "Server",
+      "learnerRole": "Diner",
+      "firstLine": "Scene: Group dinner with divergent dietary ethics. Host pressure meets medical need; you navigate gracefully. I'll start as the server; you reply as the diner. — What compromise preserves my safety without making the table about me, what the kitchen can batch separately, and how do we reset if someone pushes “just a bite”?"
+    },
+    {
+      "id": "a1-l-08",
+      "level": "A1",
+      "domain": "life",
+      "title": "Lost wallet",
+      "setting": "You think you lost your wallet in a cafe.",
+      "coachRole": "Cafe manager",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Lost wallet. You think you lost your wallet in a cafe. I'll start as the cafe manager; you reply as the customer. — Hello. I lost my wallet. Did you find a black wallet?"
+    },
+    {
+      "id": "a2-l-08",
+      "level": "A2",
+      "domain": "life",
+      "title": "Lost item inquiry",
+      "setting": "You ask staff if anything was turned in.",
+      "coachRole": "Cafe manager",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Lost item inquiry. You ask staff if anything was turned in. I'll start as the cafe manager; you reply as the customer. — I think I left a brown wallet near the window — did anyone hand one in this morning?"
+    },
+    {
+      "id": "b1-l-08",
+      "level": "B1",
+      "domain": "life",
+      "title": "Lost property process",
+      "setting": "You need timing and verification steps.",
+      "coachRole": "Cafe manager",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Lost property process. You need timing and verification steps. I'll start as the cafe manager; you reply as the customer. — What is your lost-and-found policy, whether cameras can confirm timing, and what ID you need before you release an item to me?"
+    },
+    {
+      "id": "b2-l-08",
+      "level": "B2",
+      "domain": "life",
+      "title": "High-value loss emotions",
+      "setting": "You are stressed; you cooperate with process.",
+      "coachRole": "Cafe manager",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: High-value loss emotions. You are stressed; you cooperate with process. I'll start as the cafe manager; you reply as the customer. — Cards are frozen — help me reconstruct when I paid, whether staff saw it after, and what police report you recommend if it was stolen not lost?"
+    },
+    {
+      "id": "c1-l-08",
+      "level": "C1",
+      "domain": "life",
+      "title": "Good-faith dispute over found item",
+      "setting": "Another customer claims the same wallet; you navigate.",
+      "coachRole": "Cafe manager",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Good-faith dispute over found item. Another customer claims the same wallet; you navigate. I'll start as the cafe manager; you reply as the customer. — What evidence each party has, what neutral verification you will use, and how you avoid publicly shaming someone while resolving this?"
+    },
+    {
+      "id": "c2-l-08",
+      "level": "C2",
+      "domain": "life",
+      "title": "Reputation risk for small business",
+      "setting": "Social post alleges theft by staff; owner engages.",
+      "coachRole": "Cafe manager",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Reputation risk for small business. Social post alleges theft by staff; owner engages. I'll start as the cafe manager; you reply as the customer. — What footage policy you can share legally, what statement protects your staff without sounding defensive, and what restorative step rebuilds trust with regulars?"
+    },
+    {
+      "id": "a1-l-09",
+      "level": "A1",
+      "domain": "life",
+      "title": "School meeting",
+      "setting": "You meet your child’s teacher.",
+      "coachRole": "Teacher",
+      "learnerRole": "Parent",
+      "firstLine": "Scene: School meeting. You meet your child’s teacher. I'll start as the teacher; you reply as the parent. — Hello. How is my child in class? Are they happy?"
+    },
+    {
+      "id": "a2-l-09",
+      "level": "A2",
+      "domain": "life",
+      "title": "Parent-teacher chat",
+      "setting": "You ask about behavior and reading at school.",
+      "coachRole": "Teacher",
+      "learnerRole": "Parent",
+      "firstLine": "Scene: Parent-teacher chat. You ask about behavior and reading at school. I'll start as the teacher; you reply as the parent. — How is she participating in group work, and what should we practice at home?"
+    },
+    {
+      "id": "b1-l-09",
+      "level": "B1",
+      "domain": "life",
+      "title": "Parent night follow-up",
+      "setting": "You discuss a mild learning concern constructively.",
+      "coachRole": "Teacher",
+      "learnerRole": "Parent",
+      "firstLine": "Scene: Parent night follow-up. You discuss a mild learning concern constructively. I'll start as the teacher; you reply as the parent. — I noticed math confidence dropped — what you see in class, what supports exist, and how we align without over-scheduling her?"
+    },
+    {
+      "id": "b2-l-09",
+      "level": "B2",
+      "domain": "life",
+      "title": "IEP-adjacent conversation",
+      "setting": "Formal plan not yet in place; you probe options.",
+      "coachRole": "Teacher",
+      "learnerRole": "Parent",
+      "firstLine": "Scene: IEP-adjacent conversation. Formal plan not yet in place; you probe options. I'll start as the teacher; you reply as the parent. — What accommodations are informal versus documented, what timeline for evaluation if needed, and how do we track progress with shared metrics?"
+    },
+    {
+      "id": "c1-l-09",
+      "level": "C1",
+      "domain": "life",
+      "title": "Cultural mismatch with school norms",
+      "setting": "Discipline philosophy differs; you seek partnership.",
+      "coachRole": "Teacher",
+      "learnerRole": "Parent",
+      "firstLine": "Scene: Cultural mismatch with school norms. Discipline philosophy differs; you seek partnership. I'll start as the teacher; you reply as the parent. — Where your expectations clash with our home norms, what outcome you are optimizing for, and what language in emails reduces friction for my child in the middle?"
+    },
+    {
+      "id": "c2-l-09",
+      "level": "C2",
+      "domain": "life",
+      "title": "Gifted-and-struggling paradox",
+      "setting": "Complex profile; you push for nuanced plan.",
+      "coachRole": "Teacher",
+      "learnerRole": "Parent",
+      "firstLine": "Scene: Gifted-and-struggling paradox. Complex profile; you push for nuanced plan. I'll start as the teacher; you reply as the parent. — What strengths mask deficits, what boredom triggers behavior, and what acceleration versus scaffolding trade-off you will defend with administration?"
+    },
+    {
+      "id": "a1-l-10",
+      "level": "A1",
+      "domain": "life",
+      "title": "Card blocked",
+      "setting": "Your bank card does not work abroad.",
+      "coachRole": "Bank phone agent",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Card blocked. Your bank card does not work abroad. I'll start as the bank phone agent; you reply as the customer. — Hello. My card does not work. I am in another country. Help."
+    },
+    {
+      "id": "a2-l-10",
+      "level": "A2",
+      "domain": "life",
+      "title": "Travel card block",
+      "setting": "Fraud lock triggered; you verify identity.",
+      "coachRole": "Bank phone agent",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Travel card block. Fraud lock triggered; you verify identity. I'll start as the bank phone agent; you reply as the customer. — I am traveling and my card declined — can you verify my account and lift the hold?"
+    },
+    {
+      "id": "b1-l-10",
+      "level": "B1",
+      "domain": "life",
+      "title": "Fraud alert triage abroad",
+      "setting": "You need cash access urgently.",
+      "coachRole": "Bank phone agent",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Fraud alert triage abroad. You need cash access urgently. I'll start as the bank phone agent; you reply as the customer. — What transactions triggered the block, what security questions you need, and can you raise my ATM limit temporarily once cleared?"
+    },
+    {
+      "id": "b2-l-10",
+      "level": "B2",
+      "domain": "life",
+      "title": "Multi-factor failure on the road",
+      "setting": "SIM and app access are messy; you find a path.",
+      "coachRole": "Bank phone agent",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Multi-factor failure on the road. SIM and app access are messy; you find a path. I'll start as the bank phone agent; you reply as the customer. — I cannot receive SMS — what alternate verification exists, what branch protocol applies internationally, and what provisional access you can grant?"
+    },
+    {
+      "id": "c1-l-10",
+      "level": "C1",
+      "domain": "life",
+      "title": "Regulatory hold nuance",
+      "setting": "Block is compliance-related; answers are limited.",
+      "coachRole": "Bank phone agent",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Regulatory hold nuance. Block is compliance-related; answers are limited. I'll start as the bank phone agent; you reply as the customer. — What you can disclose versus cannot, what timeline resolution typically takes, and what documentation I should carry to satisfy the next review?"
+    },
+    {
+      "id": "c2-l-10",
+      "level": "C2",
+      "domain": "life",
+      "title": "Political risk banking",
+      "setting": "Sanctions or jurisdiction questions arise; you stay calm.",
+      "coachRole": "Bank phone agent",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Political risk banking. Sanctions or jurisdiction questions arise; you stay calm. I'll start as the bank phone agent; you reply as the customer. — What rule triggered automated review, what innocent activity pattern mimics risk, and what escalation path exists without me stranded for weeks?"
+    },
+    {
+      "id": "a1-l-11",
+      "level": "A1",
+      "domain": "life",
+      "title": "Haircut words",
+      "setting": "You want a simple haircut.",
+      "coachRole": "Hair stylist",
+      "learnerRole": "Client",
+      "firstLine": "Scene: Haircut words. You want a simple haircut. I'll start as the hair stylist; you reply as the client. — Hi. Please cut my hair shorter. Not too short. Thank you."
+    },
+    {
+      "id": "a2-l-11",
+      "level": "A2",
+      "domain": "life",
+      "title": "Salon instructions",
+      "setting": "You describe length and style in basic terms.",
+      "coachRole": "Hair stylist",
+      "learnerRole": "Client",
+      "firstLine": "Scene: Salon instructions. You describe length and style in basic terms. I'll start as the hair stylist; you reply as the client. — I want trim about two centimeters off, keep the layers, and tidy the neckline."
+    },
+    {
+      "id": "b1-l-11",
+      "level": "B1",
+      "domain": "life",
+      "title": "Specific style reference",
+      "setting": "You bring a photo and negotiate feasibility.",
+      "coachRole": "Hair stylist",
+      "learnerRole": "Client",
+      "firstLine": "Scene: Specific style reference. You bring a photo and negotiate feasibility. I'll start as the hair stylist; you reply as the client. — This photo is the vibe — my hair is finer; what is realistic, what maintenance it needs, and what if I do not style it daily?"
+    },
+    {
+      "id": "b2-l-11",
+      "level": "B2",
+      "domain": "life",
+      "title": "Color history complexity",
+      "setting": "Past dye affects options; you seek honest advice.",
+      "coachRole": "Hair stylist",
+      "learnerRole": "Client",
+      "firstLine": "Scene: Color history complexity. Past dye affects options; you seek honest advice. I'll start as the hair stylist; you reply as the client. — I box-dyed six months ago — what damage you see, what color correction timeline you recommend, and what price band am I in?"
+    },
+    {
+      "id": "c1-l-11",
+      "level": "C1",
+      "domain": "life",
+      "title": "Identity-sensitive appearance change",
+      "setting": "You discuss gender-affirming or cultural sensitivity.",
+      "coachRole": "Hair stylist",
+      "learnerRole": "Client",
+      "firstLine": "Scene: Identity-sensitive appearance change. You discuss gender-affirming or cultural sensitivity. I'll start as the hair stylist; you reply as the client. — What language avoids assumptions, what privacy I need in a busy salon, and how do you handle a style that may read differently in my workplace?"
+    },
+    {
+      "id": "c2-l-11",
+      "level": "C2",
+      "domain": "life",
+      "title": "Public figure discretion",
+      "setting": "Recognition risk; you negotiate privacy and photos.",
+      "coachRole": "Hair stylist",
+      "learnerRole": "Client",
+      "firstLine": "Scene: Public figure discretion. Recognition risk; you negotiate privacy and photos. I'll start as the hair stylist; you reply as the client. — What policy on social posts, how we handle walk-ins recognizing me, and what fee structure reflects after-hours privacy?"
+    },
+    {
+      "id": "a1-l-12",
+      "level": "A1",
+      "domain": "life",
+      "title": "Return food",
+      "setting": "You want to return something you bought.",
+      "coachRole": "Store clerk",
+      "learnerRole": "Shopper",
+      "firstLine": "Scene: Return food. You want to return something you bought. I'll start as the store clerk; you reply as the shopper. — Hello. I want to return this. It is bad. Here is my receipt."
+    },
+    {
+      "id": "a2-l-12",
+      "level": "A2",
+      "domain": "life",
+      "title": "Grocery return",
+      "setting": "A product is spoiled; you ask for exchange.",
+      "coachRole": "Store clerk",
+      "learnerRole": "Shopper",
+      "firstLine": "Scene: Grocery return. A product is spoiled; you ask for exchange. I'll start as the store clerk; you reply as the shopper. — This milk smells off before the date — can I swap it or get a refund with this receipt?"
+    },
+    {
+      "id": "b1-l-12",
+      "level": "B1",
+      "domain": "life",
+      "title": "Return policy edge case",
+      "setting": "Packaging opened; you plead reasonableness.",
+      "coachRole": "Store clerk",
+      "learnerRole": "Shopper",
+      "firstLine": "Scene: Return policy edge case. Packaging opened; you plead reasonableness. I'll start as the store clerk; you reply as the shopper. — I opened it before noticing mold — what proof you need, whether store credit is available, and how you handle allergens if kids ate some?"
+    },
+    {
+      "id": "b2-l-12",
+      "level": "B2",
+      "domain": "life",
+      "title": "Batch quality issue",
+      "setting": "You suspect wider problem; you escalate calmly.",
+      "coachRole": "Store clerk",
+      "learnerRole": "Shopper",
+      "firstLine": "Scene: Batch quality issue. You suspect wider problem; you escalate calmly. I'll start as the store clerk; you reply as the shopper. — Three items from the same brand failed — should this be logged centrally, what batch codes help, and what goodwill gesture reflects repeat customer status?"
+    },
+    {
+      "id": "c1-l-12",
+      "level": "C1",
+      "domain": "life",
+      "title": "Food safety advocacy",
+      "setting": "You want accountability without vilifying frontline staff.",
+      "coachRole": "Store clerk",
+      "learnerRole": "Shopper",
+      "firstLine": "Scene: Food safety advocacy. You want accountability without vilifying frontline staff. I'll start as the store clerk; you reply as the shopper. — What upstream check failed, what you will pull from shelves tonight, and how you communicate to customers who already purchased?"
+    },
+    {
+      "id": "c2-l-12",
+      "level": "C2",
+      "domain": "life",
+      "title": "Supplier chain accountability",
+      "setting": "Regional manager is present; you argue systemic fix.",
+      "coachRole": "Store clerk",
+      "learnerRole": "Shopper",
+      "firstLine": "Scene: Supplier chain accountability. Regional manager is present; you argue systemic fix. I'll start as the store clerk; you reply as the shopper. — What root cause analysis you will run, what transparency to regulators if needed, and what compensation framework avoids case-by-case lottery?"
+    },
+    {
+      "id": "a1-l-13",
+      "level": "A1",
+      "domain": "life",
+      "title": "Park path",
+      "setting": "You are in a park and need simple directions.",
+      "coachRole": "Park ranger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Park path. You are in a park and need simple directions. I'll start as the park ranger; you reply as the visitor. — Hello. Where is the lake? Is it far to walk?"
+    },
+    {
+      "id": "a2-l-13",
+      "level": "A2",
+      "domain": "life",
+      "title": "Trail information",
+      "setting": "You ask about difficulty and time for a hike.",
+      "coachRole": "Park ranger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Trail information. You ask about difficulty and time for a hike. I'll start as the park ranger; you reply as the visitor. — Is the blue loop okay for beginners, and how long does it usually take?"
+    },
+    {
+      "id": "b1-l-13",
+      "level": "B1",
+      "domain": "life",
+      "title": "Weather and safety",
+      "setting": "Clouds roll in; you adjust plans.",
+      "coachRole": "Park ranger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Weather and safety. Clouds roll in; you adjust plans. I'll start as the park ranger; you reply as the visitor. — If lightning risk rises, what shelters exist, what turnaround point you recommend, and how fast conditions change at elevation here?"
+    },
+    {
+      "id": "b2-l-13",
+      "level": "B2",
+      "domain": "life",
+      "title": "Wildlife encounter protocol",
+      "setting": "You saw signs of bears; you want guidance.",
+      "coachRole": "Park ranger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Wildlife encounter protocol. You saw signs of bears; you want guidance. I'll start as the park ranger; you reply as the visitor. — What recent sightings, what behavior actually reduces risk versus myth, and should I reroute with kids?"
+    },
+    {
+      "id": "c1-l-13",
+      "level": "C1",
+      "domain": "life",
+      "title": "Conservation tension with recreation",
+      "setting": "Crowds damage habitat; you engage ethically.",
+      "coachRole": "Park ranger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Conservation tension with recreation. Crowds damage habitat; you engage ethically. I'll start as the park ranger; you reply as the visitor. — What carrying capacity data you track, what visitor behavior you need to change, and how enforcement pairs with education so it does not feel punitive?"
+    },
+    {
+      "id": "c2-l-13",
+      "level": "C2",
+      "domain": "life",
+      "title": "Climate-stressed ecosystem",
+      "setting": "Fire season policy shifts; you seek nuanced guidance.",
+      "coachRole": "Park ranger",
+      "learnerRole": "Visitor",
+      "firstLine": "Scene: Climate-stressed ecosystem. Fire season policy shifts; you seek nuanced guidance. I'll start as the park ranger; you reply as the visitor. — What long-term change you are managing, what trade-off between access and protection you are making, and how should advocates help without political theater?"
+    },
+    {
+      "id": "a1-l-14",
+      "level": "A1",
+      "domain": "life",
+      "title": "Dentist time",
+      "setting": "You need another day for the dentist.",
+      "coachRole": "Dental receptionist",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Dentist time. You need another day for the dentist. I'll start as the dental receptionist; you reply as the patient. — Hello. I cannot come Tuesday. Can I come Friday?"
+    },
+    {
+      "id": "a2-l-14",
+      "level": "A2",
+      "domain": "life",
+      "title": "Reschedule appointment",
+      "setting": "You move a dental cleaning.",
+      "coachRole": "Dental receptionist",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Reschedule appointment. You move a dental cleaning. I'll start as the dental receptionist; you reply as the patient. — I need to shift next week’s cleaning — what openings do you have after 4 p.m.?"
+    },
+    {
+      "id": "b1-l-14",
+      "level": "B1",
+      "domain": "life",
+      "title": "Procedure prep reschedule",
+      "setting": "Imaging timing affects treatment plan.",
+      "coachRole": "Dental receptionist",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Procedure prep reschedule. Imaging timing affects treatment plan. I'll start as the dental receptionist; you reply as the patient. — If I move the prep appointment, does that push the procedure date, and what fasting rules still apply?"
+    },
+    {
+      "id": "b2-l-14",
+      "level": "B2",
+      "domain": "life",
+      "title": "Insurance window pressure",
+      "setting": "Benefits reset soon; you optimize slots.",
+      "coachRole": "Dental receptionist",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Insurance window pressure. Benefits reset soon; you optimize slots. I'll start as the dental receptionist; you reply as the patient. — What latest date still clears insurance this cycle, what codes you will bill, and what out-of-pocket if we slip to January?"
+    },
+    {
+      "id": "c1-l-14",
+      "level": "C1",
+      "domain": "life",
+      "title": "Dental anxiety negotiation",
+      "setting": "You need sedation options discussed plainly.",
+      "coachRole": "Dental receptionist",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Dental anxiety negotiation. You need sedation options discussed plainly. I'll start as the dental receptionist; you reply as the patient. — What sedation tiers you offer, what risk profile I fit, and what consent language I should understand before agreeing?"
+    },
+    {
+      "id": "c2-l-14",
+      "level": "C2",
+      "domain": "life",
+      "title": "Overtreatment skepticism",
+      "setting": "Second opinion culture; you probe recommendations.",
+      "coachRole": "Dental receptionist",
+      "learnerRole": "Patient",
+      "firstLine": "Scene: Overtreatment skepticism. Second opinion culture; you probe recommendations. I'll start as the dental receptionist; you reply as the patient. — What evidence standard supports this intervention now versus watchful waiting, what conflicts of interest exist in-house, and how do you document if I defer?"
+    },
+    {
+      "id": "a1-l-15",
+      "level": "A1",
+      "domain": "life",
+      "title": "Pet sick",
+      "setting": "Your pet is not well. You see the vet.",
+      "coachRole": "Veterinarian",
+      "learnerRole": "Pet owner",
+      "firstLine": "Scene: Pet sick. Your pet is not well. You see the vet. I'll start as the veterinarian; you reply as the pet owner. — Hello. My dog is sick. She will not eat. Can you help?"
+    },
+    {
+      "id": "a2-l-15",
+      "level": "A2",
+      "domain": "life",
+      "title": "Vet check-up",
+      "setting": "You describe symptoms and diet changes.",
+      "coachRole": "Veterinarian",
+      "learnerRole": "Pet owner",
+      "firstLine": "Scene: Vet check-up. You describe symptoms and diet changes. I'll start as the veterinarian; you reply as the pet owner. — He has been vomiting since yesterday — still drinking water — should I bring him in today?"
+    },
+    {
+      "id": "b1-l-15",
+      "level": "B1",
+      "domain": "life",
+      "title": "Treatment options and cost",
+      "setting": "You weigh tests versus watchful waiting.",
+      "coachRole": "Veterinarian",
+      "learnerRole": "Pet owner",
+      "firstLine": "Scene: Treatment options and cost. You weigh tests versus watchful waiting. I'll start as the veterinarian; you reply as the pet owner. — What differential you consider likely, what diagnostics change the plan, and what ballpark cost before we proceed?"
+    },
+    {
+      "id": "b2-l-15",
+      "level": "B2",
+      "domain": "life",
+      "title": "Chronic condition maintenance",
+      "setting": "Meds stopped working as well.",
+      "coachRole": "Veterinarian",
+      "learnerRole": "Pet owner",
+      "firstLine": "Scene: Chronic condition maintenance. Meds stopped working as well. I'll start as the veterinarian; you reply as the pet owner. — What trend lines concern you in her labs, what titration strategy you recommend, and what side effects mean we stop?"
+    },
+    {
+      "id": "c1-l-15",
+      "level": "C1",
+      "domain": "life",
+      "title": "End-of-life care framing",
+      "setting": "Quality of life is ambiguous; you seek clarity.",
+      "coachRole": "Veterinarian",
+      "learnerRole": "Pet owner",
+      "firstLine": "Scene: End-of-life care framing. Quality of life is ambiguous; you seek clarity. I'll start as the veterinarian; you reply as the pet owner. — What objective pain signals you watch, what timeline honesty you can give, and what hospice-style supports exist at home?"
+    },
+    {
+      "id": "c2-l-15",
+      "level": "C2",
+      "domain": "life",
+      "title": "Ethical tension in expensive care",
+      "setting": "Finances and love collide; you navigate without shame.",
+      "coachRole": "Veterinarian",
+      "learnerRole": "Pet owner",
+      "firstLine": "Scene: Ethical tension in expensive care. Finances and love collide; you navigate without shame. I'll start as the veterinarian; you reply as the pet owner. — What minimum care preserves dignity, what optional heroic measures have low success, and how do we decide without guilt-tripping family members?"
+    },
+    {
+      "id": "a1-l-16",
+      "level": "A1",
+      "domain": "life",
+      "title": "Phone plan",
+      "setting": "You buy a phone plan. You need simple help.",
+      "coachRole": "Mobile shop staff",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Phone plan. You buy a phone plan. You need simple help. I'll start as the mobile shop staff; you reply as the customer. — Hello. I need a phone plan. I use internet every day. What is good?"
+    },
+    {
+      "id": "a2-l-16",
+      "level": "A2",
+      "domain": "life",
+      "title": "SIM and data",
+      "setting": "You compare two prepaid options.",
+      "coachRole": "Mobile shop staff",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: SIM and data. You compare two prepaid options. I'll start as the mobile shop staff; you reply as the customer. — I need about 20 GB and some international minutes — what plan fits without a contract?"
+    },
+    {
+      "id": "b1-l-16",
+      "level": "B1",
+      "domain": "life",
+      "title": "Family plan trade-offs",
+      "setting": "Multiple lines; you clarify throttling rules.",
+      "coachRole": "Mobile shop staff",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Family plan trade-offs. Multiple lines; you clarify throttling rules. I'll start as the mobile shop staff; you reply as the customer. — What happens after the cap, whether hotspot is included, and what roaming charges look like in region B?"
+    },
+    {
+      "id": "b2-l-16",
+      "level": "B2",
+      "domain": "life",
+      "title": "Contract fine print",
+      "setting": "Promotional price expires; you probe renewal.",
+      "coachRole": "Mobile shop staff",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Contract fine print. Promotional price expires; you probe renewal. I'll start as the mobile shop staff; you reply as the customer. — What price after month twelve, what exit fees, and what network priority differences matter for my work VPN?"
+    },
+    {
+      "id": "c1-l-16",
+      "level": "C1",
+      "domain": "life",
+      "title": "Privacy versus carrier bundles",
+      "setting": "You question data resale and DNS.",
+      "coachRole": "Mobile shop staff",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Privacy versus carrier bundles. You question data resale and DNS. I'll start as the mobile shop staff; you reply as the customer. — What data you monetize, what opt-outs exist without degrading service, and what technical setup reduces tracking on-device?"
+    },
+    {
+      "id": "c2-l-16",
+      "level": "C2",
+      "domain": "life",
+      "title": "Regulatory roaming dispute",
+      "setting": "Bill shock after travel; you argue consumer protection.",
+      "coachRole": "Mobile shop staff",
+      "learnerRole": "Customer",
+      "firstLine": "Scene: Regulatory roaming dispute. Bill shock after travel; you argue consumer protection. I'll start as the mobile shop staff; you reply as the customer. — What disclosure you claim versus what UX showed, what good-faith adjustment policy exists, and what ombudsman path you expect if we disagree?"
+    },
+    {
+      "id": "a1-l-17",
+      "level": "A1",
+      "domain": "life",
+      "title": "Rental key",
+      "setting": "You arrive at a short rental.",
+      "coachRole": "Host",
+      "learnerRole": "Guest",
+      "firstLine": "Scene: Rental key. You arrive at a short rental. I'll start as the host; you reply as the guest. — Hello. I am here. Where is the key? The code does not work."
+    },
+    {
+      "id": "a2-l-17",
+      "level": "A2",
+      "domain": "life",
+      "title": "Check-in problem",
+      "setting": "Lockbox code fails; you message the host.",
+      "coachRole": "Host",
+      "learnerRole": "Guest",
+      "firstLine": "Scene: Check-in problem. Lockbox code fails; you message the host. I'll start as the host; you reply as the guest. — We are at the door — the code you sent does not open the box; can you confirm or send someone?"
+    },
+    {
+      "id": "b1-l-17",
+      "level": "B1",
+      "domain": "life",
+      "title": "Listing mismatch",
+      "setting": "Photos showed amenities missing.",
+      "coachRole": "Host",
+      "learnerRole": "Guest",
+      "firstLine": "Scene: Listing mismatch. Photos showed amenities missing. I'll start as the host; you reply as the guest. — The Wi-Fi is unusable for work — what fix timeline you commit to, and what partial refund policy applies if it spans the stay?"
+    },
+    {
+      "id": "b2-l-17",
+      "level": "B2",
+      "domain": "life",
+      "title": "Neighborhood safety surprise",
+      "setting": "Noise and access differ from description.",
+      "coachRole": "Host",
+      "learnerRole": "Guest",
+      "firstLine": "Scene: Neighborhood safety surprise. Noise and access differ from description. I'll start as the host; you reply as the guest. — What you knew about night noise, what disclosure you consider adequate, and how we document this for platform support?"
+    },
+    {
+      "id": "c1-l-17",
+      "level": "C1",
+      "domain": "life",
+      "title": "Host-guest power imbalance",
+      "setting": "Threat of bad review flies; you de-escalate.",
+      "coachRole": "Host",
+      "learnerRole": "Guest",
+      "firstLine": "Scene: Host-guest power imbalance. Threat of bad review flies; you de-escalate. I'll start as the host; you reply as the guest. — What remedy restores fairness without retaliation risk, what platform rules govern review coercion, and what neutral evidence we should collect now?"
+    },
+    {
+      "id": "c2-l-17",
+      "level": "C2",
+      "domain": "life",
+      "title": "Short-term rental regulation edge",
+      "setting": "Building policy may prohibit; you clarify liability.",
+      "coachRole": "Host",
+      "learnerRole": "Guest",
+      "firstLine": "Scene: Short-term rental regulation edge. Building policy may prohibit; you clarify liability. I'll start as the host; you reply as the guest. — What legal risk you carry versus me as guest, what insurance gaps exist, and what exit with minimum harm if authorities intervene?"
+    }
+  ]
+}
