@@ -62,12 +62,12 @@ Data is stored under `voice-server/data/` (SQLite + session files); add backups 
    GitHub 是一个网站：注册账号 → 新建仓库 → 把你的 `English learning` 项目上传上去。Railway 会从这里自动拉代码部署。  
    若暂时不想用 GitHub，也可以在 Railway 里用其他方式部署镜像，但对你而言 **GitHub 最省事**。
 
-2. **Railway（这一步漏了会报 Railpack / build plan 失败）**  
+2. **Railway**  
    - 打开 [railway.app](https://railway.app) 注册，新建 **Project** → **Deploy from GitHub repo**，选中你的仓库。  
-   - 打开该服务 → **Settings** → **Root Directory**，填 **`web`** 并保存。（仓库根目录是 `Saylo_English`，应用和 `Dockerfile` 在 **`web`** 子目录里。）  
-   - 仓库里已有 **`web/railway.toml`**，会强制用 **Dockerfile** 构建（不用 Railpack 猜）。  
-   - 改完 Root Directory 后：**Deployments → Redeploy** 或推一个新 commit 触发构建。  
-   - 构建日志里应出现类似 **Using detected Dockerfile**；构建时已默认 `VITE_USE_SERVER_AUTH=1`。
+   - **Root Directory 留空**（不要填 `web`）。仓库根目录已有 **`Dockerfile`** + **`railway.toml`**，会走 Docker 构建。  
+   - 若 **Build → Builder** 能选手动项，选 **Dockerfile**（与 `railway.toml` 一致即可）。  
+   - **重要**：以前若把 `web` 当成 Git「子模块」上传，GitHub 上 `web` 是空的，Railway 会一直 **Railpack / build plan** 失败；请确保最新代码里 **`web` 是普通文件夹**（整仓含 `web/package.json` 等）。  
+   - 构建日志里应出现 **Using detected Dockerfile**；镜像内已默认 `VITE_USE_SERVER_AUTH=1`。
 
 3. **环境变量（Railway → 服务 → Variables）** 至少设置：  
    - `SERVER_AUTH=1`  
