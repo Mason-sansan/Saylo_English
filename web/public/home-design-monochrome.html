@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>English — Monochrome preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #000000;
+      --muted: #f5f5f5;
+      --muted-foreground: #525252;
+      --border-light: #e5e5e5;
+      --font-display: "Playfair Display", Georgia, serif;
+      --font-body: "Source Serif 4", Georgia, serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      --hairline: 1px solid var(--border-light);
+      --thin: 1px solid var(--foreground);
+      --medium: 2px solid var(--foreground);
+      --thick: 4px solid var(--foreground);
+      --ultra: 8px solid var(--foreground);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.625;
+      font-weight: 400;
+      color: var(--foreground);
+      background-color: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Layered subtle textures (still flat — no shadows) */
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 1px, #000 1px, #000 2px),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 100% 4px, 256px 256px;
+      opacity: 0.018;
+    }
+
+    .skip {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      z-index: 100;
+      padding: 12px 16px;
+      background: var(--foreground);
+      color: var(--background);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border: 0;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+    }
+
+    .skip:focus {
+      clip: auto;
+      clip-path: none;
+      height: auto;
+      width: auto;
+      outline: 3px solid var(--foreground);
+      outline-offset: 3px;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+      max-width: 430px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      background: var(--background);
+    }
+
+    .note {
+      padding: 10px 16px;
+      border-bottom: var(--thick);
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+      background: var(--muted);
+    }
+
+    .note code {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      background: var(--foreground);
+      color: var(--background);
+      padding: 2px 6px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(env(safe-area-inset-top, 0px) + 14px) 16px 16px;
+      border-bottom: var(--thick);
+      background: var(--background);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    /* Editorial punctuation: rule + square */
+    .brand-punct {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .brand-rule {
+      width: 3px;
+      height: 28px;
+      background: var(--foreground);
+    }
+
+    .brand-square {
+      width: 14px;
+      height: 14px;
+      border: var(--medium);
+      background: transparent;
+    }
+
+    .topbar-brand {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 6vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .topbar-level {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      border: var(--thin);
+      background: var(--background);
+      color: var(--foreground);
+      font-variant-numeric: tabular-nums;
+      transition: background-color 0.08s linear, color 0.08s linear;
+    }
+
+    .page {
+      flex: 1 1 auto;
+      padding: 16px 16px calc(env(safe-area-inset-bottom, 0px) + 84px);
+    }
+
+    .section-block {
+      border: var(--thin);
+      margin-bottom: 16px;
+      background: var(--background);
+    }
+
+    .section-block:not(:last-of-type) {
+      border-bottom: var(--thick);
+    }
+
+    .section-kicker {
+      padding: 10px 14px;
+      border-bottom: var(--medium);
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+      background: var(--background);
+    }
+
+    .growth-hero-split {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      flex-wrap: nowrap;
+    }
+
+    /* Inverted stats — black panel, white type, subtle vertical lines */
+    .mono-score {
+      flex: 1;
+      min-width: 0;
+      padding: 20px 16px 22px;
+      background: var(--foreground);
+      color: var(--background);
+      border-right: var(--thick);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mono-score::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 1px,
+        #fff 1px,
+        #fff 2px
+      );
+      background-size: 4px 100%;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    .mono-score > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .growth-level {
+      font-family: var(--font-display);
+      font-size: clamp(3.25rem, 16vw, 4.25rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .growth-level-label {
+      margin-top: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 220px;
+      line-height: 1.5;
+    }
+
+    .growth-level-delta {
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .growth-level-delta-val {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 4px 10px;
+      background: var(--background);
+      color: var(--foreground);
+      font-weight: 600;
+    }
+
+    .growth-cal-wrap {
+      flex-shrink: 0;
+      width: 188px;
+      max-width: 188px;
+      padding: 12px 10px 14px;
+      background: var(--background);
+      background-image:
+        linear-gradient(#00000008 1px, transparent 1px),
+        linear-gradient(90deg, #00000008 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .growth-cal-title {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: var(--hairline);
+      color: var(--foreground);
+    }
+
+    .growth-cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-bottom: 4px;
+    }
+
+    .growth-cal-wd {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      font-weight: 600;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted-foreground);
+    }
+
+    .growth-cal-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .growth-cal-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+
+    .growth-cal-cell {
+      min-height: 16px;
+      border: 1px solid var(--border-light);
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 0;
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      font-weight: 600;
+      background: var(--background);
+      color: var(--foreground);
+    }
+
+    .growth-cal-cell.is-empty {
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .growth-cal-cell.has-time {
+      background: var(--foreground);
+      color: var(--background);
+      border-color: var(--foreground);
+    }
+
+    .growth-cal-dom { line-height: 1; }
+    .growth-cal-check {
+      font-size: 0.5rem;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    @media (max-width: 350px) {
+      .growth-hero-split {
+        flex-direction: column;
+      }
+      .mono-score {
+        border-right: 0;
+        border-bottom: var(--thick);
+      }
+      .growth-cal-wrap {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+    .panel-body {
+      padding: 18px 14px 20px;
+    }
+
+    .deck-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--muted-foreground);
+    }
+
+    .deck-seg {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .deck-seg button {
+      flex: 1;
+      min-width: 72px;
+      min-height: 48px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 14px 10px;
+      border: var(--medium);
+      border-radius: 0;
+      cursor: pointer;
+      background: transparent;
+      color: var(--foreground);
+      transition: background-color 0.08s linear, color 0.08s linear;
+    }
+
+    .deck-seg button.on {
+      background: var(--foreground);
+      color: var(--background);
+    }
+
+    .deck-seg button:hover:not(.on) {
+      background: var(--muted);
+    }
+
+    .deck-seg button:focus-visible {
+      outline: 3px solid var(--foreground);
+      outline-offset: 3px;
+    }
+
+    .deck-cta {
+      width: 100%;
+      min-height: 52px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 20px 18px;
+      border: 2px solid var(--foreground);
+      border-radius: 0;
+      background: var(--foreground);
+      color: var(--background);
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.45;
+      transition: background-color 0.08s linear, color 0.08s linear;
+    }
+
+    .deck-cta:hover {
+      background: var(--background);
+      color: var(--foreground);
+    }
+
+    .deck-cta:focus-visible {
+      outline: 3px solid var(--foreground);
+      outline-offset: 3px;
+    }
+
+    .deck-cta-kicker {
+      display: block;
+      font-size: 0.625rem;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+      opacity: 0.92;
+    }
+
+    .deck-cta-title {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      text-transform: none;
+      margin-bottom: 8px;
+    }
+
+    .deck-cta-title::after {
+      content: " →";
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .deck-cta-sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      line-height: 1.55;
+      opacity: 0.92;
+    }
+
+    .editorial-hero {
+      padding: 0 16px 20px;
+      border-bottom: var(--ultra);
+    }
+
+    .editorial-hero-word {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 18vw, 5.5rem);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      margin: 0;
+      padding-top: 8px;
+    }
+
+    .editorial-hero-word em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .tabbar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(430px, 100%);
+      padding: 10px 12px calc(env(safe-area-inset-bottom, 0px) + 10px);
+      background: var(--background);
+      border-top: var(--thick);
+      display: flex;
+      gap: 8px;
+      z-index: 50;
+    }
+
+    .tab {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border: var(--thin);
+      border-radius: 0;
+      background: var(--background);
+      color: var(--foreground);
+      cursor: pointer;
+      transition: background-color 0.08s linear, color 0.08s linear;
+    }
+
+    .tab.active {
+      background: var(--foreground);
+      color: var(--background);
+    }
+
+    .tab:hover:not(.active) {
+      background: var(--muted);
+    }
+
+    .tab:focus-visible {
+      outline: 3px solid var(--foreground);
+      outline-offset: 2px;
+    }
+
+    .tab-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .deck-seg button,
+      .deck-cta,
+      .tab,
+      .topbar-level {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="shell">
+    <div class="note">
+      Minimalist monochrome mock · same layout · <code>/home-design-monochrome.html</code>
+    </div>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand-punct" aria-hidden="true">
+          <span class="brand-rule"></span>
+          <span class="brand-square"></span>
+        </div>
+        <div class="topbar-brand">English</div>
+      </div>
+      <div class="topbar-level" aria-label="Overall level">4.2</div>
+    </header>
+
+    <div class="editorial-hero" aria-hidden="true">
+      <p class="editorial-hero-word">Speak <em>with</em> intention.</p>
+    </div>
+
+    <main id="main" class="page">
+      <section class="section-block" aria-label="Progress">
+        <div class="section-kicker">Growth / Session</div>
+        <div class="growth-hero-split">
+          <div class="mono-score growth-hero-score">
+            <div class="growth-level">4.2</div>
+            <div class="growth-level-label">Overall level · 1.0 – 5.0 scale</div>
+            <div class="growth-level-delta">
+              This month Δ overall
+              <span class="growth-level-delta-val">+0.3</span>
+            </div>
+          </div>
+          <div class="growth-cal-wrap">
+            <div class="growth-cal-title">2026 Apr · 90m</div>
+            <div class="growth-cal-weekdays" aria-hidden="true">
+              <span class="growth-cal-wd">S</span>
+              <span class="growth-cal-wd">M</span>
+              <span class="growth-cal-wd">T</span>
+              <span class="growth-cal-wd">W</span>
+              <span class="growth-cal-wd">T</span>
+              <span class="growth-cal-wd">F</span>
+              <span class="growth-cal-wd">S</span>
+            </div>
+            <div class="growth-cal-grid">
+              <div class="growth-cal-row">
+                <div class="growth-cal-cell is-empty"></div>
+                <div class="growth-cal-cell is-empty"></div>
+                <div class="growth-cal-cell is-empty"></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">1</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">2</span></div>
+                <div class="growth-cal-cell has-time"><span class="growth-cal-dom">3</span><span class="growth-cal-check">✓</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">4</span></div>
+              </div>
+              <div class="growth-cal-row">
+                <div class="growth-cal-cell has-time"><span class="growth-cal-dom">5</span><span class="growth-cal-check">✓</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">6</span></div>
+                <div class="growth-cal-cell has-time"><span class="growth-cal-dom">7</span><span class="growth-cal-check">✓</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">8</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">9</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">10</span></div>
+                <div class="growth-cal-cell has-time"><span class="growth-cal-dom">11</span><span class="growth-cal-check">✓</span></div>
+              </div>
+              <div class="growth-cal-row">
+                <div class="growth-cal-cell"><span class="growth-cal-dom">12</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">13</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">14</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">15</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">16</span></div>
+                <div class="growth-cal-cell has-time"><span class="growth-cal-dom">17</span><span class="growth-cal-check">✓</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">18</span></div>
+              </div>
+              <div class="growth-cal-row">
+                <div class="growth-cal-cell"><span class="growth-cal-dom">19</span></div>
+                <div class="growth-cal-cell has-time"><span class="growth-cal-dom">20</span><span class="growth-cal-check">✓</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">21</span></div>
+                <div class="growth-cal-cell has-time"><span class="growth-cal-dom">22</span><span class="growth-cal-check">✓</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">23</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">24</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">25</span></div>
+              </div>
+              <div class="growth-cal-row">
+                <div class="growth-cal-cell"><span class="growth-cal-dom">26</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">27</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">28</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">29</span></div>
+                <div class="growth-cal-cell"><span class="growth-cal-dom">30</span></div>
+                <div class="growth-cal-cell is-empty"></div>
+                <div class="growth-cal-cell is-empty"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" aria-label="Session setup">
+        <div class="section-kicker">Configure</div>
+        <div class="panel-body">
+          <div class="deck-label">Length</div>
+          <div class="deck-seg" role="radiogroup" aria-label="Session duration">
+            <button type="button" class="on" aria-pressed="true">3m</button>
+            <button type="button" aria-pressed="false">10m</button>
+            <button type="button" aria-pressed="false">20m</button>
+          </div>
+          <button type="button" class="deck-cta">
+            <span class="deck-cta-kicker">Start</span>
+            <span class="deck-cta-title">Conversation</span>
+            <span class="deck-cta-sub">Timed dialogue, roles, and structured feedback when you finish.</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <nav class="tabbar" aria-label="Main">
+      <button type="button" class="tab active" aria-label="Home" aria-current="page">
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 20v-9.5zM9 21.5V12h6v9.5" />
+        </svg>
+      </button>
+      <button type="button" class="tab" aria-label="Growth">
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 18V14M12 18V6M19 18v-7" />
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    document.querySelectorAll(".deck-seg button").forEach((btn, i, arr) => {
+      btn.addEventListener("click", () => {
+        arr.forEach((b) => {
+          b.classList.remove("on");
+          b.setAttribute("aria-pressed", "false");
+        });
+        btn.classList.add("on");
+        btn.setAttribute("aria-pressed", "true");
+      });
+    });
+  </script>
+</body>
+</html>

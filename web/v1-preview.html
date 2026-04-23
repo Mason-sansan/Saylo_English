@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English V1 Preview</title>
+    <style>
+      :root {
+        --bg: #0f1115;
+        --panel: #151926;
+        --panel-soft: #10131d;
+        --text: #ecedf2;
+        --muted: #a7adbb;
+        --line: rgba(255, 255, 255, 0.1);
+        --accent: #c8a7ff;
+        --accent-bg: rgba(200, 167, 255, 0.14);
+        --danger-bg: rgba(255, 120, 120, 0.13);
+        --radius: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: 440px;
+        margin: 0 auto;
+        min-height: 100vh;
+        padding: 14px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .title {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+      }
+
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .chip {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .entry {
+        display: grid;
+        gap: 10px;
+      }
+
+      .btn {
+        width: 100%;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--text);
+        border-radius: 12px;
+        padding: 12px;
+        text-align: left;
+      }
+
+      .btn.primary {
+        background: var(--accent-bg);
+        border-color: rgba(200, 167, 255, 0.28);
+      }
+
+      .session-box {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px;
+        background: var(--panel-soft);
+      }
+
+      .label {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .text-input {
+        width: 100%;
+        min-height: 92px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--text);
+        padding: 10px;
+      }
+
+      .row {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .row .btn {
+        text-align: center;
+        padding: 10px;
+      }
+
+      .k {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 10px 0 6px;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .metric {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px;
+        background: var(--panel-soft);
+      }
+
+      .metric b {
+        display: block;
+        font-size: 16px;
+      }
+
+      .warn {
+        border: 1px solid rgba(255, 120, 120, 0.22);
+        background: var(--danger-bg);
+        border-radius: 10px;
+        padding: 9px 10px;
+        font-size: 13px;
+      }
+
+      .nav {
+        position: sticky;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding-top: 10px;
+        background: linear-gradient(to top, var(--bg) 72%, transparent);
+      }
+
+      .nav .btn {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="card">
+        <div class="top">
+          <div>
+            <div class="title">首页</div>
+            <div class="muted">每天 5–10 分钟，保持听说状态</div>
+          </div>
+          <div class="chip">Level 2.6</div>
+        </div>
+        <div class="entry">
+          <button class="btn primary">
+            <strong>听力（第一入口）</strong><br />
+            <span class="muted">不想开口时，先测听力理解和信息抓取</span>
+          </button>
+          <button class="btn">
+            <strong>对话（第二入口）</strong><br />
+            <span class="muted">愿意开口时，进入短对话与追问</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="top">
+          <div class="title">听力 Session（示例）</div>
+          <div class="chip">Segment 1/3</div>
+        </div>
+
+        <div class="session-box">
+          <div class="label">播放内容（示例文案）</div>
+          <div>
+            We can’t ship on Friday because the payment API changed again. Let’s move to Tuesday and message support today.
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="btn">再听一次</button>
+          <button class="btn primary">开始回答</button>
+        </div>
+
+        <div class="k">你的回答（英文优先，中文也可）</div>
+        <textarea class="text-input" placeholder="Type your answer..."></textarea>
+
+        <div class="k">系统短反馈（示例）</div>
+        <div class="session-box">
+          你抓到了延期决定，但漏了“原因是 payment API 变更”和“今天要通知 support”。
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="top">
+          <div class="title">本次训练报告（短版）</div>
+          <div class="chip">可见性优先</div>
+        </div>
+        <div class="k">能力判断</div>
+        <div>你能抓住主结论，但在细节和动作项上有遗漏。</div>
+
+        <div class="k">关键欠缺</div>
+        <ul>
+          <li>原因与结论能听到，但“下一步动作”漏听</li>
+          <li>复述时信息压缩过度</li>
+        </ul>
+
+        <div class="k">可复用表达</div>
+        <ul>
+          <li>The main reason is that...</li>
+          <li>The decision is to move it to...</li>
+        </ul>
+
+        <div class="k">等级变化</div>
+        <div>2.6 → 2.7（Comprehension +0.1，其他维度持平）</div>
+      </section>
+
+      <section class="card">
+        <div class="top">
+          <div class="title">成长 Growth</div>
+          <div class="chip">稳定型评分</div>
+        </div>
+        <div class="grid">
+          <div class="metric"><span class="muted">Comprehension</span><b>2.7</b></div>
+          <div class="metric"><span class="muted">ResponseFit</span><b>2.6</b></div>
+          <div class="metric"><span class="muted">VocabularyUse</span><b>2.4</b></div>
+          <div class="metric"><span class="muted">SentenceControl</span><b>2.5</b></div>
+        </div>
+        <div class="k">历史总结（近 7 次）</div>
+        <div class="session-box">
+          听力理解稳定上升；对话中用词准确性提升慢。建议连续 3 次重点压 VocabularyUse。
+        </div>
+        <div style="height: 8px"></div>
+        <div class="warn">发音维度未纳入 V1 评分（计划在 V2 加入）。</div>
+      </section>
+
+      <div class="nav">
+        <button class="btn primary">首页</button>
+        <button class="btn">成长</button>
+      </div>
+    </div>
+  </body>
+</html>

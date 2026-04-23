@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+  <!-- 与 App.css .listen-orb 背景层序一致：自下而上 线性底 → 三枚径向高光 -->
+  <defs>
+    <clipPath id="favicon-clip"><circle cx="24" cy="24" r="18" /></clipPath>
+    <linearGradient id="lo-lin" x1="6" y1="40" x2="42" y2="8" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d8f4ff" />
+      <stop offset="36%" stop-color="#9fdcff" />
+      <stop offset="72%" stop-color="#4aa6ff" />
+      <stop offset="100%" stop-color="#2d86eb" />
+    </linearGradient>
+    <radialGradient id="lo-r3" cx="24%" cy="80%" r="54%">
+      <stop offset="0%" stop-color="rgb(118, 206, 255)" stop-opacity="0.7" />
+      <stop offset="54%" stop-color="rgb(118, 206, 255)" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="lo-r2" cx="70%" cy="75%" r="58%">
+      <stop offset="0%" stop-color="rgb(20, 130, 255)" stop-opacity="0.92" />
+      <stop offset="58%" stop-color="rgb(20, 130, 255)" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="lo-r1" cx="34%" cy="24%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.66" />
+      <stop offset="34%" stop-color="#fff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <g clip-path="url(#favicon-clip)">
+    <rect x="0" y="0" width="48" height="48" fill="url(#lo-lin)" />
+    <rect x="0" y="0" width="48" height="48" fill="url(#lo-r3)" />
+    <rect x="0" y="0" width="48" height="48" fill="url(#lo-r2)" />
+    <rect x="0" y="0" width="48" height="48" fill="url(#lo-r1)" />
+  </g>
+</svg>

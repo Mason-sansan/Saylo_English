@@ -1,0 +1,7 @@
+.git
+**/.env
+**/.env.*
+!**/.env.example
+web/node_modules
+web/dist
+web/voice-server/node_modules

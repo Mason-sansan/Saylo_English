@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ENGLISH — BAUHAUS PREVIEW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --canvas: #f0f0f0;
+      --ink: #121212;
+      --red: #d02020;
+      --blue: #1040c0;
+      --yellow: #f0c020;
+      --muted: #e0e0e0;
+      --font: 'Outfit', system-ui, sans-serif;
+      --shadow-sm: 4px 4px 0 0 var(--ink);
+      --shadow-lg: 8px 8px 0 0 var(--ink);
+      --border: 4px solid var(--ink);
+      --border-thin: 2px solid var(--ink);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      font: 16px/1.5 var(--font);
+      font-weight: 500;
+      color: var(--ink);
+      background-color: var(--canvas);
+      background-image: radial-gradient(var(--ink) 1.5px, transparent 1.5px);
+      background-size: 20px 20px;
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .shell {
+      min-height: 100svh;
+      max-width: 430px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* floating geometry — poster noise */
+    .geo-deco {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      max-width: 430px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .geo-deco .c {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: 0.12;
+      top: 18%;
+      right: -40px;
+    }
+    .geo-deco .s {
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      background: var(--red);
+      opacity: 0.14;
+      bottom: 22%;
+      left: -20px;
+      transform: rotate(45deg);
+    }
+    .geo-deco .t {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 70px solid var(--yellow);
+      opacity: 0.18;
+      top: 48%;
+      right: 8%;
+    }
+
+    .note {
+      position: relative;
+      z-index: 2;
+      padding: 10px 16px;
+      background: var(--yellow);
+      border-bottom: var(--border);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .note code {
+      font-weight: 900;
+      background: var(--ink);
+      color: var(--canvas);
+      padding: 2px 6px;
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(env(safe-area-inset-top, 0px) + 12px) 16px 14px;
+      background: #fff;
+      border-bottom: var(--border);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .brand-mark .shape-circle {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--red);
+      border: var(--border-thin);
+    }
+    .brand-mark .shape-square {
+      width: 14px;
+      height: 14px;
+      background: var(--blue);
+      border: var(--border-thin);
+    }
+    .brand-mark .shape-tri {
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 14px solid var(--yellow);
+      filter: drop-shadow(0 0 0 1px var(--ink));
+    }
+
+    .topbar-brand {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .topbar-level {
+      font-size: 14px;
+      font-weight: 900;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: var(--border-thin);
+      background: var(--canvas);
+      box-shadow: var(--shadow-sm);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      flex: 1 1 auto;
+      padding: 16px 16px calc(env(safe-area-inset-bottom, 0px) + 84px);
+    }
+
+    /* Hero card — constructivist window */
+    .bau-window {
+      position: relative;
+      background: #fff;
+      border: var(--border);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 20px;
+    }
+
+    .bau-window::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--red);
+      border: 2px solid var(--ink);
+      z-index: 2;
+    }
+
+    .bau-window-head {
+      padding: 10px 14px;
+      background: var(--blue);
+      color: #fff;
+      border-bottom: var(--border);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .bau-window-body {
+      padding: 0;
+    }
+
+    .growth-hero-split {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      flex-wrap: nowrap;
+    }
+
+    .bau-score {
+      flex: 1;
+      min-width: 0;
+      padding: 18px 16px 20px;
+      background: var(--yellow);
+      border-right: var(--border);
+      position: relative;
+    }
+
+    .bau-score::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 22px 22px 0;
+      border-color: transparent var(--ink) transparent transparent;
+      opacity: 0.08;
+    }
+
+    .growth-level {
+      font-size: clamp(3.5rem, 18vw, 4.5rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .growth-level-label {
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      max-width: 200px;
+    }
+
+    .growth-level-delta {
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .growth-level-delta-val {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 2px 8px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .growth-cal-wrap {
+      flex-shrink: 0;
+      width: 188px;
+      max-width: 188px;
+      padding: 12px 10px 14px;
+      background: #fff;
+    }
+
+    .growth-cal-title {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: var(--border-thin);
+    }
+
+    .growth-cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-bottom: 4px;
+    }
+
+    .growth-cal-wd {
+      font-size: 8px;
+      font-weight: 900;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .growth-cal-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .growth-cal-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+
+    .growth-cal-cell {
+      min-height: 16px;
+      border: 2px solid var(--muted);
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 0;
+      font-size: 9px;
+      font-weight: 900;
+      background: #fff;
+    }
+
+    .growth-cal-cell.is-empty {
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .growth-cal-cell.has-time {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .growth-cal-dom { line-height: 1; }
+    .growth-cal-check {
+      font-size: 8px;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    @media (max-width: 350px) {
+      .growth-hero-split {
+        flex-direction: column;
+      }
+      .bau-score {
+        border-right: 0;
+        border-bottom: var(--border);
+      }
+      .growth-cal-wrap {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+    /* Config section */
+    .bau-panel {
+      background: #fff;
+      border: var(--border);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 16px;
+    }
+
+    .bau-panel-head {
+      padding: 8px 12px;
+      background: var(--red);
+      color: #fff;
+      border-bottom: var(--border);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .bau-panel-body {
+      padding: 16px 14px 18px;
+    }
+
+    .deck-label {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .deck-seg {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .deck-seg button {
+      flex: 1;
+      min-width: 72px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 14px 10px;
+      border: var(--border-thin);
+      border-radius: 0;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, opacity 0.2s;
+    }
+
+    .deck-seg button:nth-child(1) {
+      background: var(--red);
+      color: #fff;
+    }
+    .deck-seg button:nth-child(2) {
+      background: var(--blue);
+      color: #fff;
+    }
+    .deck-seg button:nth-child(3) {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    .deck-seg button.on {
+      outline: 3px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    .deck-seg button:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+    }
+
+    .deck-seg button:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+
+    .deck-seg button:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .deck-cta {
+      width: 100%;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 18px 16px;
+      border: var(--border-thin);
+      border-radius: 0;
+      background: var(--red);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      text-align: left;
+      line-height: 1.35;
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background 0.2s;
+    }
+
+    .deck-cta:hover {
+      background: #b01a1a;
+      transform: translateY(-2px);
+      box-shadow: 6px 6px 0 0 var(--ink);
+    }
+
+    .deck-cta:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+
+    .deck-cta:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+    }
+
+    .deck-cta-kicker {
+      display: block;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+      opacity: 0.95;
+    }
+
+    .deck-cta-title {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .deck-cta-sub {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      line-height: 1.45;
+      opacity: 0.95;
+    }
+
+    .tabbar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(430px, 100%);
+      padding: 10px 12px calc(env(safe-area-inset-bottom, 0px) + 10px);
+      background: var(--ink);
+      border-top: var(--border);
+      display: flex;
+      gap: 10px;
+      z-index: 50;
+    }
+
+    .tab {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border: var(--border-thin);
+      border-radius: 0;
+      background: var(--ink);
+      color: #fff;
+      cursor: default;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease-out, box-shadow 0.2s;
+    }
+
+    .tab.active {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    .tab:hover:not(.active) {
+      background: #2a2a2a;
+    }
+
+    .tab:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+
+    .tab-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .deck-seg button,
+      .deck-cta,
+      .tab {
+        transition: none;
+      }
+      .deck-seg button:hover,
+      .deck-cta:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="geo-deco" aria-hidden="true">
+    <span class="c"></span>
+    <span class="s"></span>
+    <span class="t"></span>
+  </div>
+
+  <div class="shell">
+    <div class="note">
+      Bauhaus mock · same layout · <code>/home-design-bauhaus.html</code>
+    </div>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand-mark" aria-hidden="true">
+          <span class="shape-circle"></span>
+          <span class="shape-square"></span>
+          <span class="shape-tri"></span>
+        </div>
+        <div class="topbar-brand">English</div>
+      </div>
+      <div class="topbar-level">4.2</div>
+    </header>
+
+    <main class="page">
+      <section class="bau-window" aria-label="Progress">
+        <div class="bau-window-head">Growth / Session</div>
+        <div class="bau-window-body">
+          <div class="growth-hero-split">
+            <div class="bau-score growth-hero-score">
+              <div class="growth-level">4.2</div>
+              <div class="growth-level-label">Overall level · 1.0 – 5.0 scale</div>
+              <div class="growth-level-delta">
+                This month Δ overall
+                <span class="growth-level-delta-val">+0.3</span>
+              </div>
+            </div>
+            <div class="growth-cal-wrap">
+              <div class="growth-cal-title">2026 Apr · 90m</div>
+              <div class="growth-cal-weekdays" aria-hidden="true">
+                <span class="growth-cal-wd">S</span>
+                <span class="growth-cal-wd">M</span>
+                <span class="growth-cal-wd">T</span>
+                <span class="growth-cal-wd">W</span>
+                <span class="growth-cal-wd">T</span>
+                <span class="growth-cal-wd">F</span>
+                <span class="growth-cal-wd">S</span>
+              </div>
+              <div class="growth-cal-grid">
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell is-empty"></div>
+                  <div class="growth-cal-cell is-empty"></div>
+                  <div class="growth-cal-cell is-empty"></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">1</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">2</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">3</span><span class="growth-cal-check">✓</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">4</span></div>
+                </div>
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">5</span><span class="growth-cal-check">✓</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">6</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">7</span><span class="growth-cal-check">✓</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">8</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">9</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">10</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">11</span><span class="growth-cal-check">✓</span></div>
+                </div>
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">12</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">13</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">14</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">15</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">16</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">17</span><span class="growth-cal-check">✓</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">18</span></div>
+                </div>
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">19</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">20</span><span class="growth-cal-check">✓</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">21</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">22</span><span class="growth-cal-check">✓</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">23</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">24</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">25</span></div>
+                </div>
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">26</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">27</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">28</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">29</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">30</span></div>
+                  <div class="growth-cal-cell is-empty"></div>
+                  <div class="growth-cal-cell is-empty"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bau-panel" aria-label="Session setup">
+        <div class="bau-panel-head">Configure</div>
+        <div class="bau-panel-body">
+          <div class="deck-label">Length</div>
+          <div class="deck-seg" role="radiogroup" aria-label="Session duration">
+            <button type="button" class="on" aria-pressed="true">3m</button>
+            <button type="button" aria-pressed="false">10m</button>
+            <button type="button" aria-pressed="false">20m</button>
+          </div>
+          <button type="button" class="deck-cta">
+            <span class="deck-cta-kicker">Start</span>
+            <span class="deck-cta-title">Conversation</span>
+            <span class="deck-cta-sub">Timed dialogue, roles, and structured feedback when you finish.</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <nav class="tabbar" aria-label="Main">
+      <button type="button" class="tab active" aria-label="Home" aria-current="page">
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 20v-9.5zM9 21.5V12h6v9.5" />
+        </svg>
+      </button>
+      <button type="button" class="tab" aria-label="Growth">
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 18V14M12 18V6M19 18v-7" />
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    document.querySelectorAll('.deck-seg button').forEach((btn, i, arr) => {
+      btn.addEventListener('click', () => {
+        arr.forEach((b) => { b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); });
+        btn.classList.add('on');
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+  </script>
+</body>
+</html>

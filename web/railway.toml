@@ -1,0 +1,8 @@
+# Force Docker build (avoid Railpack “build plan” failure). Requires Railway
+# service **Root Directory** = `web` (monorepo: Saylo_English/web).
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>首页草稿 · English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── 克制排版 + 略活泼画布（与 Conversation 渐变同系，避免大白底突兀）── */
+    :root {
+      --bg: #f4f1f9;
+      --surface: rgba(255, 255, 255, 0.72);
+      --border: rgba(45, 30, 80, 0.1);
+      --text: #1a1a1a;
+      --text-2: #444444;
+      --muted: #999999;
+      --muted-2: #c4c4c4;
+      --r-lg: 16px;
+      --r-pill: 999px;
+      --sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+      /* 多巴胺 Conversation 区块专用（与 home-design-alt 一致） */
+      --a1: #ff3af2;
+      --a2: #00f5d4;
+      --a3: #ffe600;
+      --a4: #ff6b35;
+      --a5: #7b2fff;
+      --void: #0d0d1a;
+    }
+
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes convo-card-glow {
+      0%, 100% {
+        box-shadow:
+          0 4px 28px rgba(255, 58, 242, 0.32),
+          0 2px 20px rgba(0, 245, 212, 0.2),
+          0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+      }
+      50% {
+        box-shadow:
+          0 8px 36px rgba(123, 47, 255, 0.38),
+          0 4px 24px rgba(255, 58, 242, 0.28),
+          0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+      }
+    }
+
+    /* 与 home-design-alt 的 deck-cta-icon 同系：圆章 + 偏移色块 + 轻脉冲 */
+    @keyframes path-cta-arrow-pulse {
+      0%, 100% {
+        box-shadow:
+          0 0 18px rgba(255, 58, 242, 0.4),
+          0 0 28px rgba(0, 245, 212, 0.22),
+          4px 4px 0 var(--a2),
+          7px 7px 0 rgba(123, 47, 255, 0.55);
+      }
+      50% {
+        box-shadow:
+          0 0 26px rgba(255, 58, 242, 0.55),
+          0 0 36px rgba(255, 230, 0, 0.25),
+          5px 5px 0 var(--a2),
+          9px 9px 0 rgba(123, 47, 255, 0.65);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      font: 15px/1.6 var(--sans);
+      color: var(--text);
+      background-color: var(--bg);
+      /* 极淡三色晕：与 --a5 / --a2 / --a1 同源，饱和度很低，不抢主内容 */
+      background-image:
+        radial-gradient(ellipse 130% 85% at 50% -25%, rgba(123, 47, 255, 0.11), transparent 55%),
+        radial-gradient(ellipse 95% 70% at 108% 45%, rgba(0, 245, 212, 0.07), transparent 50%),
+        radial-gradient(ellipse 75% 55% at -8% 88%, rgba(255, 58, 242, 0.06), transparent 48%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .shell {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      max-width: 430px;
+      margin: 0 auto;
+      background: transparent;
+    }
+
+    .draft-banner {
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-2);
+      background: var(--surface);
+      backdrop-filter: blur(10px) saturate(1.2);
+      -webkit-backdrop-filter: blur(10px) saturate(1.2);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .draft-banner code {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(env(safe-area-inset-top, 0px) + 14px) 20px 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.42) 0%, transparent 100%);
+    }
+
+    .topbar-brand {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .topbar-level {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .page {
+      flex: 1;
+      padding: 0 20px calc(env(safe-area-inset-bottom, 0px) + 80px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Growth hero — 与 App.css 一致 */
+    .growth-hero {
+      padding: 36px 0 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .growth-hero-split {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+
+    .growth-hero-score {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .growth-level {
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .growth-level-label {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .growth-level-delta {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .growth-level-delta-val {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .growth-cal {
+      flex-shrink: 0;
+      width: 188px;
+      max-width: 188px;
+      border: 1px solid rgba(0, 0, 0, 0.075);
+      border-radius: var(--r-lg);
+      padding: 5px 6px 5px;
+      background: #ffffff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.022);
+    }
+
+    .growth-cal-title {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+      text-align: center;
+    }
+
+    .growth-cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      margin-bottom: 1px;
+    }
+
+    .growth-cal-wd {
+      font-size: 8px;
+      font-weight: 600;
+      color: var(--muted-2);
+      text-align: center;
+    }
+
+    .growth-cal-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .growth-cal-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+    }
+
+    .growth-cal-cell {
+      min-height: 15px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1px;
+      gap: 0;
+    }
+
+    .growth-cal-cell.is-empty {
+      min-height: 0;
+      padding: 0;
+    }
+
+    .growth-cal-cell.has-time {
+      background: rgba(83, 122, 101, 0.1);
+      border: 1px solid rgba(83, 122, 101, 0.22);
+    }
+
+    .growth-cal-dom {
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--text-2);
+      line-height: 1.05;
+    }
+
+    .growth-cal-check {
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 1.05;
+      color: #537a65;
+    }
+
+    @media (max-width: 350px) {
+      .growth-hero-split {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .growth-cal {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+    /* Duration — 与 App 一致 */
+    .duration-wrap {
+      width: 100%;
+      max-width: 360px;
+      margin: 4px auto 20px;
+      display: flex;
+      align-items: baseline;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .duration-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .duration-row {
+      display: flex;
+      gap: 4px;
+    }
+
+    .dur-btn {
+      border: 0;
+      background: transparent;
+      padding: 6px 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: var(--r-pill);
+      position: relative;
+      transition: color 200ms ease, opacity 200ms ease;
+    }
+
+    .dur-btn::after {
+      content: '';
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 2px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      opacity: 0;
+      transform: scaleX(0.6);
+      transition: opacity 200ms ease, transform 200ms ease;
+    }
+
+    .dur-btn.on {
+      color: var(--text);
+    }
+
+    .dur-btn.on::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .dur-btn:not(.on):hover {
+      opacity: 0.68;
+    }
+
+    .home-paths {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* ── 仅 Conversation：多巴胺动态渐变 + 不对称圆角（避免「方盒子」感）── */
+    .path-btn-draft-convo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 360px;
+      min-height: 188px;
+      border: 3px solid var(--a3);
+      /* 四角半径错落：略像贴纸 / 气泡，比统一 16px 方角活泼 */
+      border-radius: 34px 18px 40px 22px;
+      padding: 26px 20px 26px 26px;
+      text-align: left;
+      gap: 14px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(105deg, var(--a1) 0%, var(--a5) 45%, var(--a2) 100%);
+      background-size: 220% 100%;
+      animation: gradient-shift 5s ease infinite, convo-card-glow 4s ease-in-out infinite;
+      transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), border-radius 260ms cubic-bezier(0.34, 1.25, 0.64, 1);
+    }
+
+    .path-btn-draft-convo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255, 230, 0, 0.2), transparent 55%),
+        radial-gradient(ellipse 70% 50% at 90% 80%, rgba(0, 245, 212, 0.18), transparent 50%);
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .path-btn-draft-convo:hover {
+      transform: translateY(-3px) scale(1.02) rotate(-0.5deg);
+      border-radius: 40px 22px 34px 28px;
+      animation-duration: 3s, 2.5s;
+    }
+
+    .path-btn-draft-convo:active {
+      transform: translateY(-1px) scale(1.008);
+    }
+
+    .path-btn-draft-convo:focus-visible {
+      outline: 3px solid var(--void);
+      outline-offset: 3px;
+    }
+
+    .path-main-draft {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .path-cta-kicker {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 8px;
+      text-shadow: 0 1px 2px rgba(13, 13, 26, 0.25);
+    }
+
+    .path-cta-headline {
+      font-size: clamp(1.65rem, 7.5vw, 2.15rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      color: #ffffff;
+      text-shadow:
+        0 2px 0 rgba(123, 47, 255, 0.45),
+        0 1px 12px rgba(13, 13, 26, 0.35);
+      margin: 0;
+    }
+
+    .path-btn-sub-draft {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.45;
+      color: rgba(13, 13, 26, 0.88);
+      max-width: 220px;
+    }
+
+    /* 多巴胺版 CTA 右侧圆章箭头（deck-cta-icon） */
+    .path-cta-icon {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 3px solid var(--void);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--void);
+      background: var(--a3);
+      position: relative;
+      z-index: 1;
+      animation: path-cta-arrow-pulse 2.5s ease-in-out infinite;
+      transition: transform 220ms cubic-bezier(0.34, 1.35, 0.64, 1);
+    }
+
+    .path-btn-draft-convo:hover .path-cta-icon {
+      transform: scale(1.08) rotate(-6deg);
+    }
+
+    .path-btn-draft-convo:active .path-cta-icon {
+      transform: scale(1.02) rotate(-2deg);
+    }
+
+    /* Tabbar — 与 App 一致 */
+    .tabbar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(430px, 100%);
+      padding: 8px 16px calc(env(safe-area-inset-bottom, 0px) + 10px);
+      border-top: 1px solid var(--border);
+      background: rgba(252, 249, 255, 0.9);
+      backdrop-filter: blur(20px) saturate(1.8);
+      display: flex;
+      gap: 6px;
+      z-index: 50;
+    }
+
+    .tab {
+      position: relative;
+      flex: 1;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: var(--r-pill);
+      padding: 10px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+      cursor: pointer;
+      transition: transform 260ms cubic-bezier(0.34, 1.25, 0.64, 1), color 200ms ease;
+    }
+
+    .tab::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 28px;
+      height: 28px;
+      margin: -14px 0 0 -14px;
+      border-radius: 50%;
+      background: #000000;
+      opacity: 0;
+      transform: scale(0.45);
+      transition: opacity 220ms ease, transform 280ms cubic-bezier(0.34, 1.35, 0.64, 1);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .tab-icon {
+      position: relative;
+      z-index: 1;
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+
+    .tab.active {
+      color: #ffffff;
+      transform: scale(1.12);
+    }
+
+    .tab.active::before {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .path-btn-draft-convo {
+        animation: none;
+        box-shadow: 0 6px 24px rgba(123, 47, 255, 0.28);
+      }
+      .path-btn-draft-convo:hover {
+        transform: none;
+        border-radius: 34px 18px 40px 22px;
+      }
+      .path-cta-icon {
+        animation: none;
+        box-shadow: 4px 4px 0 var(--a2);
+      }
+      .path-btn-draft-convo:hover .path-cta-icon {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="draft-banner">
+      首页草稿 — 克制基座 + Conversation 区块实验 · <code>/home-draft.html</code>
+    </div>
+
+    <header class="topbar">
+      <div class="topbar-brand">English</div>
+      <div class="topbar-level">4.2</div>
+    </header>
+
+    <main class="page">
+      <section class="growth-hero growth-hero-split" aria-label="Progress">
+        <div class="growth-hero-score">
+          <div class="growth-level">4.2</div>
+          <div class="growth-level-label">Overall level · 1.0 – 5.0 scale</div>
+          <div class="growth-level-delta">
+            This month Δ overall
+            <span class="growth-level-delta-val">+0.3</span>
+          </div>
+        </div>
+        <div class="growth-cal" aria-hidden="true">
+          <div class="growth-cal-title">2026 Apr · 90m</div>
+          <div class="growth-cal-weekdays">
+            <span class="growth-cal-wd">S</span>
+            <span class="growth-cal-wd">M</span>
+            <span class="growth-cal-wd">T</span>
+            <span class="growth-cal-wd">W</span>
+            <span class="growth-cal-wd">T</span>
+            <span class="growth-cal-wd">F</span>
+            <span class="growth-cal-wd">S</span>
+          </div>
+          <div class="growth-cal-grid">
+            <div class="growth-cal-row">
+              <div class="growth-cal-cell is-empty"></div>
+              <div class="growth-cal-cell is-empty"></div>
+              <div class="growth-cal-cell is-empty"></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">1</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">2</span></div>
+              <div class="growth-cal-cell has-time"><span class="growth-cal-dom">3</span><span class="growth-cal-check">✓</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">4</span></div>
+            </div>
+            <div class="growth-cal-row">
+              <div class="growth-cal-cell has-time"><span class="growth-cal-dom">5</span><span class="growth-cal-check">✓</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">6</span></div>
+              <div class="growth-cal-cell has-time"><span class="growth-cal-dom">7</span><span class="growth-cal-check">✓</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">8</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">9</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">10</span></div>
+              <div class="growth-cal-cell has-time"><span class="growth-cal-dom">11</span><span class="growth-cal-check">✓</span></div>
+            </div>
+            <div class="growth-cal-row">
+              <div class="growth-cal-cell"><span class="growth-cal-dom">12</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">13</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">14</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">15</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">16</span></div>
+              <div class="growth-cal-cell has-time"><span class="growth-cal-dom">17</span><span class="growth-cal-check">✓</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">18</span></div>
+            </div>
+            <div class="growth-cal-row">
+              <div class="growth-cal-cell"><span class="growth-cal-dom">19</span></div>
+              <div class="growth-cal-cell has-time"><span class="growth-cal-dom">20</span><span class="growth-cal-check">✓</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">21</span></div>
+              <div class="growth-cal-cell has-time"><span class="growth-cal-dom">22</span><span class="growth-cal-check">✓</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">23</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">24</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">25</span></div>
+            </div>
+            <div class="growth-cal-row">
+              <div class="growth-cal-cell"><span class="growth-cal-dom">26</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">27</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">28</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">29</span></div>
+              <div class="growth-cal-cell"><span class="growth-cal-dom">30</span></div>
+              <div class="growth-cal-cell is-empty"></div>
+              <div class="growth-cal-cell is-empty"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="duration-wrap">
+        <div class="duration-label">Length</div>
+        <div class="duration-row" role="radiogroup" aria-label="Session length">
+          <button type="button" class="dur-btn on" aria-pressed="true">3m</button>
+          <button type="button" class="dur-btn" aria-pressed="false">10m</button>
+          <button type="button" class="dur-btn" aria-pressed="false">20m</button>
+        </div>
+      </div>
+
+      <div class="home-paths">
+        <!-- 与当前产品一致：首页仅 Conversation（Listening 关闭时） -->
+        <button type="button" class="path-btn-draft-convo" aria-label="Start conversation">
+          <div class="path-main-draft">
+            <span class="path-cta-kicker">Conversation</span>
+            <p class="path-cta-headline">Start conversation now!</p>
+            <div class="path-btn-sub-draft">Same timed screen as listening—short back-and-forth under pressure.</div>
+          </div>
+          <span class="path-cta-icon" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </main>
+
+    <nav class="tabbar" aria-label="Main">
+      <button type="button" class="tab active" aria-label="Home" aria-current="page">
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 20v-9.5zM9 21.5V12h6v9.5" />
+        </svg>
+      </button>
+      <button type="button" class="tab" aria-label="Growth">
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 18V14M12 18V6M19 18v-7" />
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    document.querySelectorAll('.dur-btn').forEach((btn, _i, arr) => {
+      btn.addEventListener('click', () => {
+        arr.forEach((b) => {
+          b.classList.remove('on');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('on');
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+  </script>
+</body>
+</html>

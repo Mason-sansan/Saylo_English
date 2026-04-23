@@ -1,0 +1,7 @@
+# Repo root — Railway clones full repo; Docker build sees web/ as normal files.
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>english — tty preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --fg: #33ff00;
+      --fg-dim: #1f521f;
+      --amber: #ffb000;
+      --err: #ff3333;
+      --mono: 'JetBrains Mono', ui-monospace, 'Fira Code', monospace;
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      font: 14px/1.45 var(--mono);
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      text-shadow: 0 0 5px rgba(51, 255, 0, 0.35);
+    }
+
+    .shell {
+      position: relative;
+      min-height: 100svh;
+      max-width: 430px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+    }
+
+    /* CRT scanlines */
+    .shell::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      max-width: 430px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 100;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.09) 0px,
+        rgba(0, 0, 0, 0.09) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      opacity: 0.45;
+    }
+
+    .note {
+      position: relative;
+      z-index: 2;
+      padding: 8px 14px;
+      border-bottom: 1px dashed var(--fg-dim);
+      color: var(--amber);
+      text-shadow: 0 0 4px rgba(255, 176, 0, 0.35);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .note code {
+      color: var(--fg);
+      text-shadow: 0 0 5px rgba(51, 255, 0, 0.45);
+    }
+
+    .ascii-brand {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      padding: 10px 14px 0;
+      font-size: 10px;
+      line-height: 1.2;
+      color: var(--fg-dim);
+      white-space: pre;
+      text-shadow: none;
+      overflow-x: auto;
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px 12px;
+      border-bottom: 1px solid var(--fg-dim);
+    }
+
+    .topbar-brand {
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .topbar-level {
+      font-weight: 600;
+      font-size: 13px;
+      padding: 4px 10px;
+      border: 1px solid var(--fg);
+      color: var(--fg);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      flex: 1 1 auto;
+      padding: 0 14px calc(env(safe-area-inset-bottom, 0px) + 76px);
+    }
+
+    .term-sep {
+      color: var(--fg-dim);
+      font-size: 11px;
+      margin: 14px 0 10px;
+      letter-spacing: 0.02em;
+      text-shadow: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .term-window {
+      border: 1px solid var(--fg-dim);
+      margin-bottom: 16px;
+      background: var(--bg);
+    }
+
+    .term-titlebar {
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--fg-dim);
+      background: var(--fg);
+      color: var(--bg);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-shadow: none;
+    }
+
+    .term-body {
+      padding: 14px 12px 16px;
+    }
+
+    .growth-hero-split {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+
+    .growth-hero-score {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .growth-level {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .growth-level-label {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-shadow: none;
+    }
+
+    .growth-level-delta {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--fg-dim);
+      text-shadow: none;
+    }
+
+    .growth-level-delta-val {
+      color: var(--fg);
+      font-weight: 600;
+      text-shadow: 0 0 5px rgba(51, 255, 0, 0.45);
+    }
+
+    .delta-bar {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--amber);
+      text-shadow: 0 0 4px rgba(255, 176, 0, 0.3);
+    }
+
+    .growth-cal {
+      flex-shrink: 0;
+      width: 188px;
+      max-width: 188px;
+      border: 1px solid var(--fg-dim);
+      padding: 6px 4px 8px;
+    }
+
+    .growth-cal-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 6px;
+      text-align: center;
+      text-shadow: 0 0 4px rgba(255, 176, 0, 0.35);
+    }
+
+    .growth-cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      margin-bottom: 4px;
+      font-size: 9px;
+      color: var(--fg-dim);
+      text-align: center;
+      text-transform: uppercase;
+      text-shadow: none;
+    }
+
+    .growth-cal-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .growth-cal-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+
+    .growth-cal-cell {
+      min-height: 16px;
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2px 0;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .growth-cal-cell.is-empty {
+      min-height: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .growth-cal-cell.has-time {
+      border-color: var(--fg);
+      background: rgba(51, 255, 0, 0.06);
+    }
+
+    .growth-cal-dom {
+      color: var(--fg);
+      line-height: 1;
+    }
+
+    .growth-cal-check {
+      font-size: 8px;
+      line-height: 1;
+      color: var(--amber);
+      text-shadow: 0 0 3px rgba(255, 176, 0, 0.4);
+    }
+
+    @media (max-width: 350px) {
+      .growth-hero-split {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .growth-cal {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+    .prompt-line {
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--fg-dim);
+      text-shadow: none;
+    }
+
+    .cursor-blink::after {
+      content: '█';
+      color: var(--fg);
+      animation: blink 1.1s step-end infinite;
+      margin-left: 1px;
+      text-shadow: 0 0 6px rgba(51, 255, 0, 0.6);
+    }
+
+    .deck-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      color: var(--amber);
+      text-shadow: 0 0 4px rgba(255, 176, 0, 0.35);
+    }
+
+    .deck-seg {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .deck-seg button {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 14px;
+      border: 1px solid var(--fg-dim);
+      background: var(--bg);
+      color: var(--fg-dim);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: background 0.12s, color 0.12s, border-color 0.12s;
+      text-shadow: none;
+    }
+
+    .deck-seg button.on {
+      border-color: var(--fg);
+      color: var(--fg);
+      box-shadow: inset 0 0 0 1px var(--fg);
+      text-shadow: 0 0 5px rgba(51, 255, 0, 0.35);
+    }
+
+    .deck-seg button:hover {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
+
+    .deck-seg button:focus-visible {
+      outline: 1px solid var(--amber);
+      outline-offset: 2px;
+    }
+
+    .deck-cta {
+      width: 100%;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 16px 14px;
+      border: 1px solid var(--fg);
+      background: var(--bg);
+      color: var(--fg);
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      text-shadow: 0 0 5px rgba(51, 255, 0, 0.4);
+    }
+
+    .deck-cta:hover {
+      background: var(--fg);
+      color: var(--bg);
+      text-shadow: none;
+    }
+
+    .deck-cta:active {
+      transform: translateY(1px);
+    }
+
+    .deck-cta:focus-visible {
+      outline: 1px solid var(--amber);
+      outline-offset: 2px;
+    }
+
+    .deck-cta-kicker {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: var(--amber);
+      margin-bottom: 6px;
+      text-shadow: 0 0 4px rgba(255, 176, 0, 0.35);
+    }
+
+    .deck-cta:hover .deck-cta-kicker {
+      color: var(--bg);
+      text-shadow: none;
+    }
+
+    .deck-cta-title {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .deck-cta-sub {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      opacity: 0.92;
+      line-height: 1.45;
+    }
+
+    .deck-cta:hover .deck-cta-sub {
+      color: var(--bg);
+      opacity: 0.85;
+    }
+
+    .tabbar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(430px, 100%);
+      padding: 8px 12px calc(env(safe-area-inset-bottom, 0px) + 8px);
+      border-top: 1px solid var(--fg-dim);
+      background: var(--bg);
+      display: flex;
+      gap: 8px;
+      z-index: 50;
+    }
+
+    .tab {
+      flex: 1;
+      border: 1px solid var(--fg-dim);
+      background: var(--bg);
+      color: var(--fg-dim);
+      padding: 12px;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+      transition: background 0.12s, color 0.12s, border-color 0.12s;
+      text-shadow: none;
+    }
+
+    .tab.active {
+      border-color: var(--fg);
+      color: var(--fg);
+      box-shadow: inset 0 0 0 1px var(--fg);
+      text-shadow: 0 0 5px rgba(51, 255, 0, 0.35);
+    }
+
+    .tab-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cursor-blink::after {
+        animation: none;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="note">
+      // tty / cli mock · live app unchanged · <code>/home-design-terminal.html</code>
+    </div>
+
+    <pre class="ascii-brand" aria-hidden="true">┌─┐┬ ┬┌─┐┬  ┌─┐
+├┤ │││├┤ │  ├┤
+└─┘└┴┘└─┘┴─┘└─┘ v0</pre>
+
+    <header class="topbar">
+      <div class="topbar-brand">english</div>
+      <div class="topbar-level">4.2</div>
+    </header>
+
+    <main class="page">
+      <div class="term-sep">// ---------------------------------------------------------------- //</div>
+
+      <section class="term-window" aria-label="Progress">
+        <div class="term-titlebar">+--- session / growth ---+</div>
+        <div class="term-body">
+          <div class="growth-hero-split">
+            <div class="growth-hero-score">
+              <div class="growth-level">4.2</div>
+              <div class="growth-level-label">overall · 1.0–5.0 scale</div>
+              <div class="growth-level-delta">
+                this_month_delta_overall <span class="growth-level-delta-val">+0.3</span>
+              </div>
+              <div class="delta-bar" aria-hidden="true">[|||||||||||||.......] 65%</div>
+              <div class="prompt-line cursor-blink"><span style="color:var(--fg-dim)">learner@english:~$</span> status --watch</div>
+            </div>
+            <div class="growth-cal">
+              <div class="growth-cal-title">2026 apr · 90m</div>
+              <div class="growth-cal-weekdays">
+                <span>s</span><span>m</span><span>t</span><span>w</span><span>t</span><span>f</span><span>s</span>
+              </div>
+              <div class="growth-cal-grid">
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell is-empty"></div>
+                  <div class="growth-cal-cell is-empty"></div>
+                  <div class="growth-cal-cell is-empty"></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">1</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">2</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">3</span><span class="growth-cal-check">*</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">4</span></div>
+                </div>
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">5</span><span class="growth-cal-check">*</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">6</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">7</span><span class="growth-cal-check">*</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">8</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">9</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">10</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">11</span><span class="growth-cal-check">*</span></div>
+                </div>
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">12</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">13</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">14</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">15</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">16</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">17</span><span class="growth-cal-check">*</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">18</span></div>
+                </div>
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">19</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">20</span><span class="growth-cal-check">*</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">21</span></div>
+                  <div class="growth-cal-cell has-time"><span class="growth-cal-dom">22</span><span class="growth-cal-check">*</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">23</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">24</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">25</span></div>
+                </div>
+                <div class="growth-cal-row">
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">26</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">27</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">28</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">29</span></div>
+                  <div class="growth-cal-cell"><span class="growth-cal-dom">30</span></div>
+                  <div class="growth-cal-cell is-empty"></div>
+                  <div class="growth-cal-cell is-empty"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="term-window" aria-label="Session setup">
+        <div class="term-titlebar">+--- config ---+</div>
+        <div class="term-body">
+          <div class="deck-label">// duration [sec]</div>
+          <div class="deck-seg" role="radiogroup" aria-label="Session duration">
+            <button type="button" class="on" aria-pressed="true">[ 3m ]</button>
+            <button type="button" aria-pressed="false">[ 10m ]</button>
+            <button type="button" aria-pressed="false">[ 20m ]</button>
+          </div>
+          <button type="button" class="deck-cta">
+            <span class="deck-cta-kicker">[ ok ] ready</span>
+            <span class="deck-cta-title">&gt; initiate_conversation</span>
+            <span class="deck-cta-sub">timed turns · role prompts · post-session report. flags: --live --mic</span>
+          </button>
+        </div>
+      </section>
+
+      <div class="term-sep">// eof</div>
+    </main>
+
+    <nav class="tabbar" aria-label="Main">
+      <button type="button" class="tab active" aria-label="Home" aria-current="page">
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 20v-9.5zM9 21.5V12h6v9.5" />
+        </svg>
+      </button>
+      <button type="button" class="tab" aria-label="Growth">
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 18V14M12 18V6M19 18v-7" />
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    document.querySelectorAll('.deck-seg button').forEach((btn, i, arr) => {
+      btn.addEventListener('click', () => {
+        arr.forEach((b) => { b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); });
+        btn.classList.add('on');
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+  </script>
+</body>
+</html>
