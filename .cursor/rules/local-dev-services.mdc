@@ -1,0 +1,16 @@
+---
+description: Restart local voice-server and Vite after relevant fixes; user tests without running commands themselves.
+alwaysApply: true
+---
+
+# Local dev services (web + voice-server)
+
+When a change affects **`web/voice-server`**, **`web/vite.config.ts`**, or **conversation / WebSocket / proxy** in **`web/src`**, assume the user needs both processes refreshed.
+
+**Do this in the same turn (run the commands yourself):**
+
+1. Free ports **8787** and **5173** (kill listeners if needed).
+2. Start **`node server.js`** in `web/voice-server` in the background.
+3. Start **`npm run dev`** in `web` in the background.
+
+Then tell the user in one short line that services are up (e.g. localhost:5173 + 8787) and **ask them to test**. Do not leave “请你自行重启” as the only action unless execution failed or permissions blocked you.

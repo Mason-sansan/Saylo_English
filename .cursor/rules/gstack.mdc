@@ -1,0 +1,22 @@
+---
+description: Prefer gstack-style workflows (office-hours, CEO/eng/design reviews, QA-only, ship) for product and engineering tasks. Keep outputs curated and restrained.
+alwaysApply: true
+---
+
+# gstack workflow routing
+
+Use these project skills when relevant:
+- `gstack-office-hours`: when framing is fuzzy or the user asks to rethink the product
+- `gstack-plan-ceo-review`: when a plan exists but scope/differentiation needs pushback
+- `gstack-plan-eng-review`: when implementing and architecture/test plan must be locked
+- `gstack-plan-design-review`: when UI/IA needs restraint and anti-slop checks
+- `gstack-design-html`: when producing HTML mockups
+- `gstack-review`: before shipping non-trivial code changes
+- `gstack-qa-only`: when asked to test flows and report bugs (no code changes)
+- `gstack-ship`: when asked to finalize/ship
+
+Guardrails:
+- No generic learning-app patterns.
+- Prefer restraint over richness.
+- Keep outputs short, high-signal, non-repetitive.
+

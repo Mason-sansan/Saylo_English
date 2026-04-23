@@ -1,0 +1,10 @@
+{
+  "name": "english-learning",
+  "private": true,
+  "description": "Run web app from repo root: npm run dev",
+  "scripts": {
+    "dev": "npm run dev --prefix web",
+    "build": "npm run build --prefix web",
+    "preview": "npm run preview --prefix web"
+  }
+}
