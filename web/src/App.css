@@ -816,6 +816,8 @@
   width: 160px;
   height: 160px;
   border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -827,6 +829,10 @@
   border-radius: 50%;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  contain: paint;
   background:
     radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.66) 0%, rgba(255, 255, 255, 0) 34%),
     radial-gradient(circle at 70% 75%, rgba(20, 130, 255, 0.92) 0%, rgba(20, 130, 255, 0) 58%),
@@ -848,7 +854,7 @@
     radial-gradient(ellipse at 28% 28%, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 42%),
     radial-gradient(ellipse at 65% 62%, rgba(18, 103, 255, 0.42) 0%, rgba(18, 103, 255, 0) 44%),
     radial-gradient(ellipse at 52% 78%, rgba(140, 221, 255, 0.36) 0%, rgba(140, 221, 255, 0) 46%);
-  filter: blur(0.4px);
+  filter: none;
   animation: listen-orb-fluid 5.8s linear infinite;
 }
 
@@ -863,8 +869,8 @@
   background:
     radial-gradient(ellipse at 38% 30%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 50%),
     radial-gradient(ellipse at 72% 72%, rgba(35, 122, 255, 0.35) 0%, rgba(35, 122, 255, 0) 58%);
-  mix-blend-mode: screen;
-  filter: blur(0.7px);
+  mix-blend-mode: normal;
+  filter: none;
   animation: listen-orb-mist 4.1s ease-in-out infinite;
 }
 
@@ -883,6 +889,7 @@
   height: 48px;
   min-width: 48px;
   min-height: 48px;
+  overflow: hidden;
 }
 
 .listen-orb--mark {
