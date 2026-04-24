@@ -719,8 +719,8 @@ function clampLevel(n: number) {
 function clampDelta(d: number) {
   if (!Number.isFinite(d)) return 0;
   if (d === 0) return 0;
-  if (d > 0) return Math.min(0.1, d);
-  return Math.max(-0.1, d);
+  if (d > 0) return Math.min(0.2, d);
+  return Math.max(-0.2, d);
 }
 
 function isShortDuration(duration: SessionDuration) {

@@ -83,6 +83,167 @@ export function extractUserLines(transcript) {
     .filter(Boolean);
 }
 
+/** @param {string} transcript */
+function extractAssistantLines(transcript) {
+  return String(transcript ?? '')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => /^Assistant:/i.test(l))
+    .map((l) => l.replace(/^Assistant:\s*/i, '').trim())
+    .filter(Boolean);
+}
+
+const EN_STOPWORDS = new Set([
+  'a',
+  'an',
+  'the',
+  'and',
+  'or',
+  'but',
+  'to',
+  'of',
+  'in',
+  'on',
+  'at',
+  'for',
+  'with',
+  'from',
+  'by',
+  'is',
+  'are',
+  'was',
+  'were',
+  'be',
+  'been',
+  'being',
+  'i',
+  'you',
+  'he',
+  'she',
+  'it',
+  'we',
+  'they',
+  'me',
+  'him',
+  'her',
+  'us',
+  'them',
+  'my',
+  'your',
+  'our',
+  'their',
+  'this',
+  'that',
+  'these',
+  'those',
+  'do',
+  'does',
+  'did',
+  'have',
+  'has',
+  'had',
+  'can',
+  'could',
+  'would',
+  'should',
+  'will',
+  'shall',
+  'may',
+  'might',
+  'about',
+  'into',
+  'than',
+  'then',
+  'there',
+  'here',
+  'when',
+  'where',
+  'why',
+  'how',
+  'what',
+  'which',
+]);
+
+function tokenizeEnglishWords(text) {
+  return String(text ?? '')
+    .toLowerCase()
+    .match(/[a-z]+(?:'[a-z]+)?/g) || [];
+}
+
+function contentWords(text) {
+  return tokenizeEnglishWords(text).filter((w) => w.length >= 3 && !EN_STOPWORDS.has(w));
+}
+
+function pairQuestionAnswerSignals(transcript) {
+  const lines = String(transcript ?? '')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean);
+
+  let asked = 0;
+  let matched = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (!/^Assistant:/i.test(line) || !line.includes('?')) continue;
+    const q = line.replace(/^Assistant:\s*/i, '').trim();
+    let answer = '';
+    for (let j = i + 1; j < lines.length; j++) {
+      if (/^User:/i.test(lines[j])) {
+        answer = lines[j].replace(/^User:\s*/i, '').trim();
+        break;
+      }
+      if (/^Assistant:/i.test(lines[j])) break;
+    }
+    if (!answer || /^\(audio turn\)$/i.test(answer)) continue;
+    asked += 1;
+    const qSet = new Set(contentWords(q));
+    const aSet = new Set(contentWords(answer));
+    let overlap = 0;
+    for (const w of aSet) {
+      if (qSet.has(w)) overlap += 1;
+    }
+    const clarification = /\b(sorry|pardon|repeat|what do you mean|could you say that again)\b/i.test(answer);
+    if (overlap > 0 || clarification) matched += 1;
+  }
+  return { asked, matched, ratio: asked > 0 ? matched / asked : 0 };
+}
+
+function averageWords(lines) {
+  if (!lines.length) return 0;
+  const total = lines.reduce((sum, x) => sum + countWords(x), 0);
+  return total / lines.length;
+}
+
+function lexicalVariety(lines) {
+  const all = tokenizeEnglishWords(lines.join(' ')).filter((w) => w.length >= 3);
+  if (!all.length) return 0;
+  return new Set(all).size / all.length;
+}
+
+function countMatches(lines, re) {
+  let n = 0;
+  for (const l of lines) {
+    n += (l.match(re) || []).length;
+  }
+  return n;
+}
+
+function normalizeLevel(level) {
+  const l = String(level ?? 'B1').toUpperCase().trim();
+  if (l === 'A1' || l === 'A2' || l === 'B1' || l === 'B2' || l === 'C1' || l === 'C2') return l;
+  return 'B1';
+}
+
+function levelProfile(level) {
+  const l = normalizeLevel(level);
+  if (l === 'A1') return { oralMinWords: 4, oralStrongWords: 7, grammarErrTolerance: 2, lexStrong: 0.46 };
+  if (l === 'A2') return { oralMinWords: 5, oralStrongWords: 8, grammarErrTolerance: 2, lexStrong: 0.5 };
+  if (l === 'B1') return { oralMinWords: 6, oralStrongWords: 9, grammarErrTolerance: 1, lexStrong: 0.55 };
+  if (l === 'B2') return { oralMinWords: 7, oralStrongWords: 10, grammarErrTolerance: 1, lexStrong: 0.6 };
+  if (l === 'C1') return { oralMinWords: 8, oralStrongWords: 11, grammarErrTolerance: 0, lexStrong: 0.64 };
+  return { oralMinWords: 9, oralStrongWords: 12, grammarErrTolerance: 0, lexStrong: 0.68 };
+}
+
 /**
  * Conversation coaching expects enough English production to anchor feedback.
  * - non_english: user turns are mainly Chinese (CJK) → do not score
@@ -518,7 +679,7 @@ export function buildQuickReportSystemPrompt() {
     'next_drill {title (<=8 words), target_dimension fluency|grammar|vocabulary|pronunciation|coherence, prompt (<=40 words), example_answer (<=45 words), success_check (exactly 2 strings, each <=12 words)},',
     'growth_tags {strong: 0 or 1 items from target_dimension set, focus: 1 or 2 items; focus[0] MUST equal next_drill.target_dimension},',
     'cefr_five: REQUIRED object with EXACT keys ListeningComprehension, OralFluency, GrammarAccuracy, VocabularyRange, InteractionQuality.',
-    'Each value is { proposed_delta: -0.1|0|0.1, confidence: number 0-1, reason: string <= 28 words, English }.',
+    'Each value is { proposed_delta: -0.2|-0.1|0|0.1|0.2, confidence: number 0-1, reason: string <= 28 words, English }.',
     'Use transcript evidence: listening = tracking questions & appropriate replies; oral = pace/fillers/naturalness; grammar; vocabulary; interaction = turn-taking, relevance, clarity.',
     'With 2+ English user turns, usually give at least 2-3 different dimensions a non-zero proposed_delta when the transcript supports it (e.g. listening + interaction + grammar or vocabulary).',
     'Do not output all zeros for non-oral dimensions just because the audio metrics line exists — conversation shows listening, language control, and interaction too.',
@@ -553,15 +714,6 @@ export function extractJsonObject(raw) {
   return t;
 }
 
-function tagToCefrDimension(tag) {
-  const t = String(tag || '').toLowerCase();
-  if (t === 'fluency' || t === 'pronunciation') return 'OralFluency';
-  if (t === 'grammar') return 'GrammarAccuracy';
-  if (t === 'vocabulary') return 'VocabularyRange';
-  if (t === 'coherence') return 'InteractionQuality';
-  return 'OralFluency';
-}
-
 function correctionKindToCefrDimension(kind) {
   const k = String(kind || '').toLowerCase();
   if (k === 'grammar') return 'GrammarAccuracy';
@@ -573,11 +725,13 @@ function correctionKindToCefrDimension(kind) {
 
 /**
  * @param {number} x
- * @returns {-0.1|0|0.1}
+ * @returns {-0.2|-0.1|0|0.1|0.2}
  */
 function clampCefrDelta(x) {
   if (x == null || !Number.isFinite(x)) return 0;
+  if (x > 0.15) return 0.2;
   if (x > 0.05) return 0.1;
+  if (x < -0.15) return -0.2;
   if (x < -0.05) return -0.1;
   return 0;
 }
@@ -684,14 +838,26 @@ export function finalizeSessionGrowthMoves(report) {
 /**
  * @param {object} q — normalized quick_report_v1
  * @param {string} [transcript]
- * @returns {Record<string, { proposed_delta: -0.1|0|0.1; confidence: number; reason: string }>}
+ * @returns {Record<string, { proposed_delta: -0.2|-0.1|0|0.1|0.2; confidence: number; reason: string }>}
  */
 export function synthesizeCefrFive(quick, transcript = '') {
   const users = extractUserLines(transcript);
+  const assistants = extractAssistantLines(transcript);
+  const level = normalizeLevel(quick?.level);
+  const profile = levelProfile(level);
   const userTurns = users.length;
-  const primary = tagToCefrDimension(quick.next_drill?.target_dimension);
   const corrKind = String(quick.correction?.kind || '').toLowerCase();
-  const corrDim = correctionKindToCefrDimension(quick.correction?.kind);
+  const avgWords = averageWords(users);
+  const variety = lexicalVariety(users);
+  const fillers = countMatches(users, /\b(uh|um|erm|like)\b/gi);
+  const repeatedStarts = countMatches(users, /\b([a-z]+)\s+\1\b/gi);
+  const grammarFlags = countMatches(
+    users,
+    /\b(he go|she go|i goes|we was|they was|depend of|discuss about|very like|open the light|close the light)\b/gi,
+  );
+  const userQuestions = countMatches(users, /\?/g);
+  const pair = pairQuestionAnswerSignals(transcript);
+
   const base = (reason) => ({ proposed_delta: 0, confidence: 0.35, reason });
   const o = {
     ListeningComprehension: base('Not estimated (rules).'),
@@ -700,43 +866,122 @@ export function synthesizeCefrFive(quick, transcript = '') {
     VocabularyRange: base('Not estimated (rules).'),
     InteractionQuality: base('Not estimated (rules).'),
   };
+
   if (userTurns >= 2) {
-    if (primary === 'ListeningComprehension') {
+    if (pair.asked >= 2 && pair.ratio >= 0.8) {
       o.ListeningComprehension = {
-        proposed_delta: 0.1,
-        confidence: 0.64,
-        reason: 'Multiple user turns; session focus is listening/response alignment.',
+        proposed_delta: 0.2,
+        confidence: 0.78,
+        reason: `Replies stayed aligned with coach questions for ${level} pressure.`,
       };
-    } else {
+    } else if (pair.asked >= 1 && pair.ratio >= 0.5) {
       o.ListeningComprehension = {
         proposed_delta: 0.1,
-        confidence: 0.52,
-        reason: 'Multiple user turns; you followed the exchange.',
+        confidence: 0.66,
+        reason: `Most answers were relevant to the coach question at ${level}.`,
+      };
+    } else if (pair.asked >= 2) {
+      o.ListeningComprehension = {
+        proposed_delta: -0.1,
+        confidence: 0.62,
+        reason: `Several answers drifted from the question intent for ${level}.`,
       };
     }
   }
-  o[primary] = {
-    proposed_delta: 0.1,
-    confidence: primary === 'ListeningComprehension' && userTurns >= 2 ? 0.66 : 0.64,
-    reason: clip(
-      userTurns >= 2 && primary === 'ListeningComprehension'
-        ? `Next drill: ${quick.next_drill?.title || 'session focus'}.`
-        : `Next drill focus: ${quick.next_drill?.title || 'session'}.`,
-      220,
-    ),
-  };
-  if (corrDim && corrDim !== primary) {
-    o[corrDim] = {
+
+  if (userTurns >= 2) {
+    const roughRate = (fillers + repeatedStarts) / Math.max(1, users.length);
+    if (avgWords >= profile.oralStrongWords && roughRate <= 0.4) {
+      o.OralFluency = {
+        proposed_delta: 0.2,
+        confidence: 0.76,
+        reason: `Turn length and flow exceeded typical ${level} fluency targets.`,
+      };
+    } else if (avgWords >= profile.oralMinWords) {
+      o.OralFluency = {
+        proposed_delta: 0.1,
+        confidence: 0.62,
+        reason: `You sustained spoken turns with acceptable ${level} continuity.`,
+      };
+    } else if (roughRate >= 1.5) {
+      o.OralFluency = {
+        proposed_delta: -0.1,
+        confidence: 0.58,
+        reason: 'Frequent fillers/restarts interrupted flow this session.',
+      };
+    }
+  }
+
+  if (corrKind === 'grammar') {
+    o.GrammarAccuracy = {
+      proposed_delta: -0.1,
+      confidence: 0.7,
+      reason: 'Grammar correction signal indicates repeated structural errors.',
+    };
+  } else if (grammarFlags <= profile.grammarErrTolerance && avgWords >= profile.oralMinWords && userTurns >= 2) {
+    o.GrammarAccuracy = {
       proposed_delta: 0.1,
-      confidence: 0.5,
-      reason: clip(`Correction kind ${corrKind} points here.`, 220),
+      confidence: 0.6,
+      reason: `Sentence forms were mostly stable for current ${level} expectations.`,
     };
-  } else if (corrDim && corrDim === primary) {
-    o[primary] = {
-      ...o[primary],
-      reason: clip(`${o[primary].reason} Correction cue (${corrKind}) aligns.`, 240),
-      confidence: Math.max(o[primary].confidence, 0.66),
+  } else if (grammarFlags > profile.grammarErrTolerance + 1 && userTurns >= 2) {
+    o.GrammarAccuracy = {
+      proposed_delta: -0.1,
+      confidence: 0.58,
+      reason: `Grammar error density was high versus ${level} baseline.`,
     };
+  }
+
+  if (corrKind === 'word_choice') {
+    o.VocabularyRange = {
+      proposed_delta: -0.1,
+      confidence: 0.68,
+      reason: 'Word-choice correction suggests lexical precision gaps.',
+    };
+  } else if (variety >= profile.lexStrong && avgWords >= profile.oralMinWords && userTurns >= 2) {
+    o.VocabularyRange = {
+      proposed_delta: variety >= profile.lexStrong + 0.1 ? 0.2 : 0.1,
+      confidence: 0.64,
+      reason: `Lexical range supported clearer, more specific expression at ${level}.`,
+    };
+  } else if (variety < Math.max(0.35, profile.lexStrong - 0.2) && userTurns >= 2) {
+    o.VocabularyRange = {
+      proposed_delta: -0.1,
+      confidence: 0.54,
+      reason: `Word range was narrow for current ${level} communication needs.`,
+    };
+  }
+
+  if (userTurns >= 3) {
+    if (userQuestions >= 1 || assistants.length >= 3) {
+      o.InteractionQuality = {
+        proposed_delta: 0.1,
+        confidence: 0.63,
+        reason: 'Turn-taking stayed active and responses kept the dialogue moving.',
+      };
+    } else if (pair.asked >= 2 && pair.ratio < 0.5) {
+      o.InteractionQuality = {
+        proposed_delta: -0.1,
+        confidence: 0.57,
+        reason: 'Dialogue coherence weakened when replies missed prior prompts.',
+      };
+    }
+  }
+
+  // Avoid "only two dimensions moved" for valid multi-turn sessions.
+  const nonZero = CEFR_FIVE_ORDER.filter((k) => o[k].proposed_delta !== 0).length;
+  if (userTurns >= 2 && nonZero < 3) {
+    const fallbackOrder = ['InteractionQuality', 'GrammarAccuracy', 'VocabularyRange'];
+    for (const k of fallbackOrder) {
+      if (o[k].proposed_delta !== 0) continue;
+      o[k] = {
+        proposed_delta: 0.1,
+        confidence: 0.45,
+        reason: 'Multi-turn evidence is sufficient to register a small positive step here.',
+      };
+      const nowNonZero = CEFR_FIVE_ORDER.filter((d) => o[d].proposed_delta !== 0).length;
+      if (nowNonZero >= 3) break;
+    }
   }
   return o;
 }
